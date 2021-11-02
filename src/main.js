@@ -1,0 +1,16 @@
+import Vue from 'nativescript-vue'
+import Navigator from 'nativescript-vue-navigator'
+import routes from '@quarks/routes'
+import Main from '@/components/Main'
+import i18n from '@bosons/i18n'
+
+Vue.use(Navigator, { routes })
+
+Vue.config.silent = true
+
+new Vue({
+  i18n,
+  render: h =>
+    h(Main)
+})
+  .$start()

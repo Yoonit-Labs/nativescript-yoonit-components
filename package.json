@@ -1,15 +1,44 @@
 {
   "name": "nativescript-yoonit-components",
-  "main": "app/app.js",
+  "main": "src/main.js",
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "lint": "vue-cli-service lint",
+    "build:android": "tns build android --bundle",
+    "clean:platforms": "npx rimraf platforms",
+    "debug:android": "tns debug android --bundle",
+    "preview:android": "tns preview --bundle",
+    "serve:android": "tns run android --debug-brk",
+    "prepare:android": "tns prepare android --release"
+  },
   "dependencies": {
     "@nativescript/core": "~8.1.1",
-    "@nativescript/theme": "~3.0.1",
-    "nativescript-vue": "~2.9.0"
+    "@panter/vue-i18next": "^0.15.2",
+    "i18next": "^21.3.3",
+    "nativescript-vue": "~2.9.0",
+    "nativescript-vue-navigator": "^1.2.0",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/eslint-parser": "^7.11.5",
+    "@babel/eslint-plugin": "^7.11.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.4.5",
+    "@nativescript/android": "8.1.1",
     "@nativescript/webpack": "~5.0.0",
-    "nativescript-vue-template-compiler": "~2.9.0"
+    "@vue/cli-plugin-babel": "^3.9.0",
+    "@vue/cli-plugin-eslint": "^3.9.0",
+    "@vue/cli-service": "^4.1.2",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-vue": "^5.0.0",
+    "nativescript-vue-template-compiler": "~2.9.0",
+    "pug": "^2.0.3",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^12.3.0",
+    "sass": "^1.43.4"
   }
 }
