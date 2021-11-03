@@ -14,8 +14,8 @@
  * Luigui Delyer @ 2021
  */
 
-import MainPropsConfig from '@quarks/MainProps.config'
+import YooSliderPage from '@atoms/YooSliderPage'
 
 export {
-  MainPropsConfig
+  YooSliderPage
 }

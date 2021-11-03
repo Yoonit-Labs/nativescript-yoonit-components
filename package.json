@@ -13,6 +13,7 @@
     "prepare:android": "tns prepare android --release"
   },
   "dependencies": {
+    "@nativescript-community/ui-drawer": "0.0.31",
     "@nativescript/core": "~8.1.1",
     "@panter/vue-i18next": "^0.15.2",
     "i18next": "^21.3.3",

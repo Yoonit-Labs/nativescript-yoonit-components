@@ -14,8 +14,30 @@
  * Luigui Delyer @ 2021
  */
 
-import MainPropsConfig from '@quarks/MainProps.config'
-
-export {
-  MainPropsConfig
+module.exports = {
+  size: {
+    options: [
+      'xs',
+      'sm',
+      'md',
+      'lg',
+      'xl',
+      'hg'
+    ]
+  },
+  fill: {
+    options: [
+      'primary',
+      'danger',
+      'light',
+      'dark',
+      'neutral'
+    ]
+  },
+  textColor: {
+    options: [
+      'light',
+      'dark'
+    ]
+  }
 }
