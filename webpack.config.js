@@ -1,10 +1,26 @@
+/**
+ * ██╗   ██╗ ██████╗  ██████╗ ███╗   ██╗██╗████████╗
+ * ╚██╗ ██╔╝██╔═══██╗██╔═══██╗████╗  ██║██║╚══██╔══╝
+ *  ╚████╔╝ ██║   ██║██║   ██║██╔██╗ ██║██║   ██║
+ *   ╚██╔╝  ██║   ██║██║   ██║██║╚██╗██║██║   ██║
+ *    ██║   ╚██████╔╝╚██████╔╝██║ ╚████║██║   ██║
+ *    ╚═╝    ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝   ╚═╝
+ *
+ * https://yoonit.dev - about@yoonit.dev
+ *
+ * NativeScript Yoonit Components
+ * NativeScript VueJS Atomic Design System framework
+ *
+ * Luigui Delyer @ 2021
+ */
+
+// https://docs.nativescript.org/webpack
+
 const webpack = require('@nativescript/webpack')
 const { resolve } = require('path')
 
 module.exports = (env) => {
   webpack.init(env)
-
-  // https://docs.nativescript.org/webpack
 
   webpack.chainWebpack(config => {
     config.module
@@ -28,17 +44,11 @@ module.exports = (env) => {
       .alias
       .set('@', resolve(__dirname, './src'))
       .set('@bosons', resolve(__dirname, './src/components/bosons/index.js'))
-      .set('@bosons/*', resolve(__dirname, './src/components/bosons/*'))
       .set('@quarks', resolve(__dirname, './src/components/quarks/index.js'))
-      .set('@quarks/*', resolve(__dirname, './src/components/quarks/*'))
       .set('@atoms', resolve(__dirname, './src/components/atoms/index.js'))
-      .set('@atoms/*', resolve(__dirname, './src/components/atoms/*'))
       .set('@molecules', resolve(__dirname, './src/components/molecules/index.js'))
-      .set('@molecules/*', resolve(__dirname, './src/components/molecules/*'))
       .set('@organisms', resolve(__dirname, './src/components/organisms/index.js'))
-      .set('@organisms/*', resolve(__dirname, './src/components/organisms/*'))
       .set('@templates', resolve(__dirname, './src/components/templates/index.js'))
-      .set('@templates/*', resolve(__dirname, './src/components/templates/*'))
   })
 
   return webpack.resolveConfig()

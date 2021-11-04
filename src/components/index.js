@@ -14,8 +14,12 @@
  * Luigui Delyer @ 2021
  */
 
-import Home from './Home'
+import {
+  YooSliderPage
+} from '@atoms'
 
-export {
-  Home
+const yooComponents = {
+  YooSliderPage
 }
+
+export default yooComponents

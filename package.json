@@ -1,10 +1,11 @@
 {
   "name": "nativescript-yoonit-components",
-  "main": "src/main.js",
+  "main": "src/main.nativescript.js",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "lint": "vue-cli-service lint",
+    "build:vue": "cross-env NODE_ENV=vue vue-cli-service build --target lib --name yoo src/main.lib.js",
     "build:android": "tns build android --bundle",
     "clean:platforms": "npx rimraf platforms",
     "debug:android": "tns debug android --bundle",

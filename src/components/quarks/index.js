@@ -14,8 +14,12 @@
  * Luigui Delyer @ 2021
  */
 
-import MainPropsConfig from '@quarks/MainProps.config'
+import GlobalProps from './GlobalProps.config'
+import routes from './Routes'
+import en from './EN.i18n'
 
 export {
-  MainPropsConfig
+  GlobalProps,
+  routes,
+  en
 }

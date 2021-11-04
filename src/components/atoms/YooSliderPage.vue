@@ -4,8 +4,10 @@ Page(
   @loaded="onPageLoaded"
 )
   Drawer(
-    ref="drawer"
-    @open="onDrawerChangeState"
+    ref="drawer",
+    :gestureEnabled="gestureEnabled",
+    :leftSwipeDistance="leftSwipeDistance",
+    @open="onDrawerChangeState",
     @close="onDrawerChangeState"
   )
     StackLayout(
@@ -38,7 +40,7 @@ Page(
  */
 
 import {
-  MainPropsConfig
+  GlobalProps
 } from '@quarks'
 
 export default {
@@ -51,11 +53,19 @@ export default {
       type: Boolean,
       default: true
     },
+    gestureEnabled: {
+      type: Boolean,
+      default: true
+    },
+    leftSwipeDistance: {
+      type: Number,
+      default: 50
+    },
     size: {
       type: String,
       default: 'xl',
       validator: value =>
-        MainPropsConfig.size.options.includes(value)
+        GlobalProps.size.options.includes(value)
     }
   },
   computed: {

@@ -14,8 +14,10 @@
  * Luigui Delyer @ 2021
  */
 
-import Home from './Home'
+import { Home } from '@templates'
 
-export {
-  Home
+export default {
+  'home': {
+    component: Home
+  }
 }

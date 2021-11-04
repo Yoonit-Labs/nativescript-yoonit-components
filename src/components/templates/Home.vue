@@ -9,32 +9,42 @@ YooSliderPage(
     rows="auto, *"
     backgroundColor="white"
   )
-    StackLayout(row="0")
-      StackLayout(backgroundColor="#eeeeee" padding="25")
-        GridLayout(columns="80, *" height="100")
-          StackLayout(col="0" class="avatar")
-            Label(text="JS")
 
-        StackLayout
-          Label(text="John Smith" fontWeight="bold")
-          Label(text="john.smith@example.com")
-
-      StackLayout
-        Button(text="My Profile" @tap="doToggleSlider")
-        Button(text="Settings" @tap="doToggleSlider")
-        Button(text="Rate Us" @tap="doToggleSlider")
-        Button(text="Support" @tap="doToggleSlider")
-        Button(text="Contact" @tap="doToggleSlider")
-
-  StackLayout(
+  GridLayout(
     slot="main"
+    columns="*"
+    rows="*, *"
     backgroundColor="white"
   )
-    Button(@tap="doToggleSlider" text="Open Drawer" width="250" marginTop="25")
+    Button(
+      row="0"
+      col="0"
+      text="Open Slider"
+      width="250"
+      height="100"
+      horizontalAlignment="center"
+      @tap="doToggleSlider"
+    )
 
-    GridLayout
-      Label.info
+    GridLayout(
+      row="1"
+      col="0"
+      columns="*"
+      rows="*, *"
+    )
+      Label.icon(
+        row="0"
+        col="0"
+        width="100%"
+        textAlignment="center"
+      )
         Span.fas(text.decode="&#xf5d2;")
+
+      Label(
+        row="1"
+        col="0"
+        horizontalAlignment="center"
+      )
         Span(:text="$t('helloWorld')")
 </template>
 
@@ -80,9 +90,7 @@ export default {
     onSliderLoad ({ drawer }) {
       this.drawer = drawer
     },
-    onSliderChange ({ eventName }) {
-      console.log(eventName)
-    },
+    onSliderChange ({ eventName }) {},
     doToggleSlider () {
       this.drawer.toggle()
     }
@@ -91,4 +99,6 @@ export default {
 </script>
 
 <style scoped lang="sass">
+.icon
+  font-size: 100
 </style>

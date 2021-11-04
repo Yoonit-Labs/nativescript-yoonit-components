@@ -14,7 +14,7 @@
  * Luigui Delyer @ 2021
  */
 
-import YooSliderPage from '@atoms/YooSliderPage'
+import YooSliderPage from './YooSliderPage'
 
 export {
   YooSliderPage

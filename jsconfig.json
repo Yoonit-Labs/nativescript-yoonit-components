@@ -4,17 +4,11 @@
     "paths": {
       "@/*": ["src/*"],
       "@bosons": ["src/components/bosons/index.js"],
-      "@bosons/*": ["src/components/bosons/*"],
       "@quarks": ["src/components/quarks/index.js"],
-      "@quarks/*": ["src/components/quarks/*"],
       "@atoms": ["src/components/atoms/index.js"],
-      "@atoms/*": ["src/components/atoms/*"],
       "@molecules": ["src/components/molecules/index.js"],
-      "@molecules/*": ["src/components/molecules/*"],
       "@organisms": ["src/components/organisms/index.js"],
-      "@organisms/*": ["src/components/organisms/*"],
-      "@templates": ["src/components/templates/index.js"],
-      "@templates/*": ["src/components/templates/*"]
+      "@templates": ["src/components/templates/index.js"]
     }
   },
   "include": ["src/**/*"]

@@ -14,8 +14,10 @@
  * Luigui Delyer @ 2021
  */
 
-import Home from './Home'
-
-export {
-  Home
+export default {
+  en: {
+    translation: {
+      helloWorld: 'hello atomic world!'
+    }
+  }
 }
