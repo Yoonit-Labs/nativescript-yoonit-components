@@ -5,7 +5,6 @@
   "private": true,
   "scripts": {
     "lint": "vue-cli-service lint",
-    "build:vue": "cross-env NODE_ENV=vue vue-cli-service build --target lib --name yoo src/main.lib.js",
     "build:android": "tns build android --bundle",
     "clean:platforms": "npx rimraf platforms",
     "debug:android": "tns debug android --bundle",
@@ -40,7 +39,7 @@
     "nativescript-vue-template-compiler": "~2.9.0",
     "pug": "^3.0.1",
     "pug-plain-loader": "^1.0.0",
-    "sass-loader": "^12.3.0",
-    "sass": "^1.43.4"
+    "sass": "^1.43.4",
+    "sass-loader": "^12.3.0"
   }
 }
