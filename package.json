@@ -1,25 +1,13 @@
 {
-  "name": "nativescript-yoonit-components",
-  "main": "src/main.nativescript.js",
-  "version": "1.0.0",
+  "name": "@yoonit/nativescript-components",
+  "main": "src/main.lib.js",
+  "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "lint": "vue-cli-service lint",
-    "build:android": "tns build android --bundle",
-    "clean:platforms": "npx rimraf platforms",
-    "debug:android": "tns debug android --bundle",
-    "preview:android": "tns preview --bundle",
-    "serve:android": "tns run android --debug-brk",
-    "prepare:android": "tns prepare android --release"
-  },
+  "scripts": {},
   "dependencies": {
     "@nativescript-community/ui-drawer": "0.0.31",
     "@nativescript/core": "~8.1.1",
-    "@panter/vue-i18next": "^0.15.2",
-    "i18next": "^21.3.3",
-    "nativescript-vue": "~2.9.0",
-    "nativescript-vue-navigator": "^1.2.0",
-    "vuex": "^3.6.2"
+    "nativescript-vue": "~2.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

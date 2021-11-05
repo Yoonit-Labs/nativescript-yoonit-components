@@ -14,12 +14,8 @@
  * Luigui Delyer @ 2021
  */
 
-import GlobalProps from './GlobalProps.config'
-import routes from './Routes'
-import en from './EN.i18n'
+import YooPropsBase from './YooPropsBase.config'
 
 export {
-  GlobalProps,
-  routes,
-  en
+  YooPropsBase
 }

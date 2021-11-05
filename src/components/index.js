@@ -18,8 +18,13 @@ import {
   YooSliderPage
 } from '@atoms'
 
+import {
+  YooPropsBase
+} from '@quarks'
+
 const yooComponents = {
-  YooSliderPage
+  YooSliderPage,
+  YooPropsBase
 }
 
 export default yooComponents

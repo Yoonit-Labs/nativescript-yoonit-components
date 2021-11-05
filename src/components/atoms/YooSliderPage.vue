@@ -40,7 +40,7 @@ Page(
  */
 
 import {
-  GlobalProps
+  YooPropsBase
 } from '@quarks'
 
 export default {
@@ -65,7 +65,7 @@ export default {
       type: String,
       default: 'xl',
       validator: value =>
-        GlobalProps.size.options.includes(value)
+        YooPropsBase.size.options.includes(value)
     }
   },
   computed: {
