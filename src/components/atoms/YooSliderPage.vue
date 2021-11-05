@@ -39,9 +39,18 @@ Page(
  * Luigui Delyer @ 2021
  */
 
+import Vue from 'nativescript-vue'
+import {
+  install as installUiDrawer
+} from '@nativescript-community/ui-drawer'
+import DrawerPlugin from '@nativescript-community/ui-drawer/vue'
 import {
   YooPropsBase
 } from '@quarks'
+
+installUiDrawer()
+
+Vue.use(DrawerPlugin)
 
 export default {
   name: 'YooSliderPage',
