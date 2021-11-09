@@ -13,3 +13,9 @@
  *
  * Luigui Delyer @ 2021
  */
+
+import YooComponentName from './YooComponentName'
+
+export {
+  YooComponentName
+}

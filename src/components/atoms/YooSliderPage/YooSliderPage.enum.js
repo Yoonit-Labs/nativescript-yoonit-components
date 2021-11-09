@@ -14,8 +14,12 @@
  * Luigui Delyer @ 2021
  */
 
-import * as GLOBAL_ENUMS from './YooGlobal.enum'
+export const ACTION_BAR_HIDDEN = 'actionBarHidden'
+export const GESTURE_ENABLED = 'gestureEnabled'
+export const LEFT_SWIPE_DISTANCE = 'leftSwipeDistance'
 
-export {
-  GLOBAL_ENUMS
+export const OPTIONS = {
+  [LEFT_SWIPE_DISTANCE]: {
+    default: 50
+  }
 }

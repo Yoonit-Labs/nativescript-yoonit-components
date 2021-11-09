@@ -7,8 +7,8 @@ Page(
     ref="drawer",
     :gestureEnabled="gestureEnabled",
     :leftSwipeDistance="leftSwipeDistance",
-    @open="onDrawerChangeState",
-    @close="onDrawerChangeState"
+    @open="onDrawerChange",
+    @close="onDrawerChange"
   )
     StackLayout(
       ~leftDrawer,
@@ -40,13 +40,10 @@ Page(
  */
 
 import Vue from 'nativescript-vue'
-import {
-  install as installUiDrawer
-} from '@nativescript-community/ui-drawer'
+import { install as installUiDrawer } from '@nativescript-community/ui-drawer'
 import DrawerPlugin from '@nativescript-community/ui-drawer/vue'
-import {
-  YooPropsBase
-} from '@quarks'
+import * as LOCAL_ENUMS from './YooSliderPage.enum'
+import { GLOBAL_ENUMS } from '../../quarks'
 
 installUiDrawer()
 
@@ -58,23 +55,23 @@ export default {
     type: 'atom'
   },
   props: {
-    actionBarHidden: {
+    [LOCAL_ENUMS.ACTION_BAR_HIDDEN]: {
       type: Boolean,
       default: true
     },
-    gestureEnabled: {
+    [LOCAL_ENUMS.GESTURE_ENABLED]: {
       type: Boolean,
       default: true
     },
-    leftSwipeDistance: {
+    [LOCAL_ENUMS.LEFT_SWIPE_DISTANCE]: {
       type: Number,
-      default: 50
+      default: LOCAL_ENUMS.OPTIONS[LOCAL_ENUMS.LEFT_SWIPE_DISTANCE].default
     },
-    size: {
+    [GLOBAL_ENUMS.SIZE]: {
       type: String,
-      default: 'xl',
+      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.SIZE].default,
       validator: value =>
-        YooPropsBase.size.options.includes(value)
+        GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.SIZE].validator.includes(value)
     }
   },
   computed: {
@@ -86,7 +83,7 @@ export default {
         lg: '60%',
         xl: '75%',
         hg: '100%'
-      }[this.size]
+      }[this[GLOBAL_ENUMS.SIZE]]
     }
   },
   methods: {
@@ -105,7 +102,7 @@ export default {
         }
       })
     },
-    onDrawerChangeState ({ eventName, side, duration }) {
+    onDrawerChange ({ eventName, side, duration }) {
       this.$emit('change', {
         eventName,
         side,
@@ -115,6 +112,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="sass">
-</style>

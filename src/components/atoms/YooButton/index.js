@@ -14,8 +14,6 @@
  * Luigui Delyer @ 2021
  */
 
-import * as GLOBAL_ENUMS from './YooGlobal.enum'
+import YooButton from './YooButton'
 
-export {
-  GLOBAL_ENUMS
-}
+export default YooButton

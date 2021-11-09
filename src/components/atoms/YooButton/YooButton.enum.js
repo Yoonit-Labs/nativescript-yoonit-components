@@ -14,8 +14,29 @@
  * Luigui Delyer @ 2021
  */
 
-import * as GLOBAL_ENUMS from './YooGlobal.enum'
+export const VARIATION = 'variation'
+export const FORMAT = 'format'
 
-export {
-  GLOBAL_ENUMS
+const VARIATIONS = [
+  'base',
+  'outline',
+  'clear'
+]
+
+const FORMATS = [
+  'block',
+  'text',
+  'square',
+  'mini'
+]
+
+export const OPTIONS = {
+  [VARIATION]: {
+    default: VARIATIONS[0],
+    validator: VARIATIONS
+  },
+  [FORMAT]: {
+    default: FORMATS[0],
+    validator: FORMATS
+  }
 }

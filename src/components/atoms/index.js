@@ -15,7 +15,9 @@
  */
 
 import YooSliderPage from './YooSliderPage'
+import YooButton from './YooButton'
 
 export {
-  YooSliderPage
+  YooSliderPage,
+  YooButton
 }

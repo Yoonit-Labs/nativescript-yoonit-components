@@ -15,16 +15,13 @@
  */
 
 import {
-  YooSliderPage
-} from '@atoms'
-
-import {
-  YooPropsBase
-} from '@quarks'
+  YooSliderPage,
+  YooButton
+} from './atoms'
 
 const yooComponents = {
   YooSliderPage,
-  YooPropsBase
+  YooButton
 }
 
 export default yooComponents
