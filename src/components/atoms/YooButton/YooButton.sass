@@ -1,0 +1,64 @@
+@import "../../quarks/YooAnimationPulse"
+
+.yoonit
+  &-button
+    $root: &
+    @apply yoo-font-mont-semibold yoo-font-semibold yoo-p-0
+
+    #{ $root }__text,
+    #{ $root }__icon
+      @apply yoo-bg-transparent yoo-z-0
+
+    &#{ $root }--rectangular,
+    &#{ $root }--spherical
+      @apply yoo-rounded-xxl
+
+    // SIZE + FORMAT
+    $sizes: "xxs" 6 14 "xs", "xs" 7 20 "xs", "sm" 8 25 "sm", "md" 12 31 "md", "lg" 14 44 "lg", "xl" 17 63 "xl", "xxl" 22 83 "xxl"
+    $tailwindMultiplier: 4
+    @each $size, $aspectHeight, $aspectWidth, $fontSize in $sizes
+      &--#{ $size }
+        &#{ $root }--rectangular
+          @apply yoo-h-#{ $aspectHeight * $tailwindMultiplier } yoo-w-#{ $aspectWidth * $tailwindMultiplier }
+
+        &#{ $root }--square,
+        &#{ $root }--spherical
+          @apply yoo-h-#{ $aspectHeight * $tailwindMultiplier } yoo-w-#{ $aspectHeight * $tailwindMultiplier }
+
+        #{ $root }__text,
+        #{ $root }__icon
+          @apply yoo-text-#{ $fontSize }
+
+    // FILL + VARIATION
+    &--filled
+      @apply yoo-border-2 yoo-border-solid yoo-z-0
+
+    &--outline
+      @apply yoo-border-2 yoo-border-solid yoo-bg-transparent yoo-z-0
+
+    &--clear
+      @apply yoo-border-0 yoo-border-transparent yoo-bg-transparent yoo-z-0
+
+    $fills: "primary" "primary" "black" "primary", "danger" "danger" "white" "danger", "grey" "grey" "grey-darkest" "grey-darkest", "disable" "grey-light" "grey" "grey", "light" "white" "black" "white", "dark" "black" "white" "black"
+    @each $fillName, $fillColor, $textColor, $clearTextColor in $fills
+      &--fill-#{ $fillName }
+        &#{ $root }--filled
+          @apply yoo-bg-#{ $fillColor }
+
+          #{ $root }__text,
+          #{ $root }__icon
+            @apply yoo-text-#{ $textColor }
+
+        &#{ $root }--outline,
+        &#{ $root }--filled
+          @apply yoo-border-#{ $fillColor }
+
+        &#{ $root }--clear,
+        &#{ $root }--outline
+          #{ $root }__text,
+          #{ $root }__icon
+            @apply yoo-text-#{ $clearTextColor }
+
+    // ANIMATION
+    &#{ $root }--animation-pulse
+      @extend %yoo__animation--pulse

@@ -1,5 +1,8 @@
+const tailwindcss = require('tailwindcss')
+
 module.exports = {
-  plugins: {
-    '@nativescript/tailwind': {}
-  }
+  plugins: [
+    tailwindcss('./tailwind.config.js'),
+    '@nativescript/tailwind'
+  ]
 }

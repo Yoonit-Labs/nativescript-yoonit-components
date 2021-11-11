@@ -1,0 +1,14 @@
+%yoo__animation--pulse
+  animation-name: yoo-pulse
+  animation-duration: 1s
+  animation-fill-mode: forwards
+  animation-iteration-count: infinite
+
+@keyframes yoo-pulse
+  0%, 100%
+    transform: scale(.95)
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1)
+  50%
+    transform: scale(1)
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1)
+

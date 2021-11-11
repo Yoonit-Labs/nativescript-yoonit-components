@@ -21,24 +21,26 @@ export const ICON_POSITION = 'iconPosition'
 export const ICON_SIZE = 'iconSize'
 export const TEXT_COLOR = 'textColor'
 export const ANIMATION = 'animation'
+export const EVENT_LOADED = 'loaded'
+export const EVENT_CHANGE = 'change'
 
 const SIZES = [
+  'xxs',
   'xs',
   'sm',
   'md',
   'lg',
   'xl',
-  'hg'
+  'xxl'
 ]
 
 const FILLS = [
   'primary',
   'danger',
-  'neutral',
-  'light',
-  'dark',
+  'grey',
   'disable',
-  'gray'
+  'light',
+  'dark'
 ]
 
 const COLOR_MODES = [
@@ -60,7 +62,7 @@ const ANIMATIONS = [
 
 export const OPTIONS = {
   [SIZE]: {
-    default: SIZES[2],
+    default: SIZES[3],
     validator: SIZES
   },
   [FILL]: {

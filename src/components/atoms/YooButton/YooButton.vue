@@ -1,42 +1,42 @@
 <template lang="pug">
-  Button.yoo-button(
-    :class="takeModifier"
-    v-on="takeListeners"
-    v-bind="takeAttributes"
+  Button.yoonit-button(
+    :class="takeButtonClasses"
+    v-on="takeButtonListeners"
+    v-bind="takeButtonAttributes"
   )
-    FormattedString.yoo-button__content(
+    FormattedString.yoonit-button__content(
       v-if="takeIconPosition === 'left'"
     )
-      Span.yoo-button__icon(
+      Span.yoonit-button__icon(
         v-show="takeIconDraw"
-        :class="takeIconModifier"
+        :class="takeIconClasses"
         :text="takeIconDraw"
       )
 
-      Span.yoo-button__space(
+      Span.yoonit-button__space(
         :text="(takeTextContent && takeIconDraw) ? '__' : ''"
       )
 
-      Span.yoo-button__text(
+      Span.yoonit-button__text(
         v-show="takeTextContent"
         :text="takeTextContent"
       )
 
-    FormattedString.yoo-button__content(
+    FormattedString.yoonit-button__content(
       v-else-if="takeIconPosition === 'right'"
     )
-      Span.yoo-button__text(
+      Span.yoonit-button__text(
         v-show="takeTextContent"
         :text="takeTextContent"
       )
 
-      Span.yoo-button__space(
+      Span.yoonit-button__space(
         :text="(takeTextContent && takeIconDraw) ? '__' : ''"
       )
 
-      Span.yoo-button__icon(
+      Span.yoonit-button__icon(
         v-show="takeIconDraw"
-        :class="takeIconModifier"
+        :class="takeIconClasses"
         :text="takeIconDraw"
       )
 </template>
@@ -48,11 +48,11 @@ import { GLOBAL_ENUMS } from '../../quarks'
 export default {
   name: 'YooButton',
   props: {
-    [LOCAL_ENUMS.VARIATION]: {
+    [GLOBAL_ENUMS.SIZE]: {
       type: String,
-      default: LOCAL_ENUMS.OPTIONS[LOCAL_ENUMS.VARIATION].default,
+      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.SIZE].default,
       validator: value =>
-        LOCAL_ENUMS.OPTIONS[LOCAL_ENUMS.VARIATION].validator.includes(value)
+        GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.SIZE].validator.includes(value)
     },
     [LOCAL_ENUMS.FORMAT]: {
       type: String,
@@ -60,11 +60,11 @@ export default {
       validator: value =>
         LOCAL_ENUMS.OPTIONS[LOCAL_ENUMS.FORMAT].validator.includes(value)
     },
-    [GLOBAL_ENUMS.SIZE]: {
+    [LOCAL_ENUMS.VARIATION]: {
       type: String,
-      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.SIZE].default,
+      default: LOCAL_ENUMS.OPTIONS[LOCAL_ENUMS.VARIATION].default,
       validator: value =>
-        GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.SIZE].validator.includes(value)
+        LOCAL_ENUMS.OPTIONS[LOCAL_ENUMS.VARIATION].validator.includes(value)
     },
     [GLOBAL_ENUMS.FILL]: {
       type: String,
@@ -96,10 +96,10 @@ export default {
     }
   },
   computed: {
-    takeListeners () {
+    takeButtonListeners () {
       return this.$listeners
     },
-    takeAttributes () {
+    takeButtonAttributes () {
       return this.$attrs
     },
     takeIconPosition () {
@@ -108,44 +108,34 @@ export default {
     /**
      * @description Creates the component class with modifiers
      */
-    takeModifier () {
-      const block = this.$yooComponentName
+    takeButtonClasses () {
+      const BLOCK = this.$yooComponentName
       const classList = []
 
-      if (this[LOCAL_ENUMS.VARIATION] && (this[LOCAL_ENUMS.VARIATION] !== LOCAL_ENUMS.OPTIONS[LOCAL_ENUMS.VARIATION].default)) {
-        classList
-          .push(
-            `${block}--${this[LOCAL_ENUMS.VARIATION]}`
-          )
-      }
+      classList
+        .push(
+          `${BLOCK}--${this[GLOBAL_ENUMS.SIZE]}`
+        )
 
-      if (this[LOCAL_ENUMS.FORMAT] && (this[LOCAL_ENUMS.FORMAT] !== LOCAL_ENUMS.OPTIONS[LOCAL_ENUMS.FORMAT].default)) {
-        classList
-          .push(
-            `${block}--${this[LOCAL_ENUMS.FORMAT]}`
-          )
-      }
+      classList
+        .push(
+          `${BLOCK}--${this[LOCAL_ENUMS.FORMAT]}`
+        )
 
-      if (this[GLOBAL_ENUMS.SIZE] && (this[GLOBAL_ENUMS.SIZE] !== GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.SIZE].default)) {
-        classList
-          .push(
-            `${block}--${this[GLOBAL_ENUMS.SIZE]}`
-          )
-      }
+      classList
+        .push(
+          `${BLOCK}--${this[LOCAL_ENUMS.VARIATION]}`
+        )
 
-      if (this[GLOBAL_ENUMS.FILL]) {
-        classList
-          .push(
-            `${block}--fill-${this[GLOBAL_ENUMS.FILL]}`
-          )
-      }
+      classList
+        .push(
+          `${BLOCK}--fill-${this[GLOBAL_ENUMS.FILL]}`
+        )
 
-      if (this[GLOBAL_ENUMS.ANIMATION] && (this[GLOBAL_ENUMS.ANIMATION] !== GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.ANIMATION].default)) {
-        classList
-          .push(
-            `${block}--animation-${this[GLOBAL_ENUMS.ANIMATION]}`
-          )
-      }
+      classList
+        .push(
+          `${BLOCK}--animation-${this[GLOBAL_ENUMS.ANIMATION]}`
+        )
 
       return classList
     },
@@ -166,9 +156,9 @@ export default {
     /**
      * @description Creates the icon class with modifiers
      */
-    takeIconModifier () {
-      const block = this.$yooComponentName
-      const element = `${block}__icon`
+    takeIconClasses () {
+      const BLOCK = this.$yooComponentName
+      const element = `${BLOCK}__icon`
       const classList = []
 
       // set icon type
@@ -191,8 +181,4 @@ export default {
 }
 </script>
 
-<style lang="sass">
-//@import "tailwindcss/base"
-//@import "tailwindcss/components"
-//@import "tailwindcss/utilities"
-</style>
+<style lang="sass" src="./YooButton.sass" />

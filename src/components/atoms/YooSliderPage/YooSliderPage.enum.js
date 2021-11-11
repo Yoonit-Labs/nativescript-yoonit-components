@@ -17,6 +17,9 @@
 export const ACTION_BAR_HIDDEN = 'actionBarHidden'
 export const GESTURE_ENABLED = 'gestureEnabled'
 export const LEFT_SWIPE_DISTANCE = 'leftSwipeDistance'
+export const SLOT_MAIN = 'main'
+export const SLOT_LEFT = 'left'
+export const DRAWER_REF = 'drawer'
 
 export const OPTIONS = {
   [LEFT_SWIPE_DISTANCE]: {

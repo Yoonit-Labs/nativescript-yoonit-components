@@ -1,25 +1,25 @@
 <template lang="pug">
 Page(
-  :actionBarHidden="actionBarHidden",
+  :actionBarHidden="takeActionBarHidden"
   @loaded="onPageLoaded"
 )
   Drawer(
-    ref="drawer",
-    :gestureEnabled="gestureEnabled",
-    :leftSwipeDistance="leftSwipeDistance",
-    @open="onDrawerChange",
+    ref="drawer"
+    :gestureEnabled="takeGestureEnabled"
+    :leftSwipeDistance="takeLeftSwipeDistance"
+    @open="onDrawerChange"
     @close="onDrawerChange"
   )
     StackLayout(
-      ~leftDrawer,
-      :width="drawerSize"
+      ~leftDrawer
+      :width="takeDrawerSize"
     )
-      slot(name="left")
+      slot(:name="LOCAL_ENUMS.SLOT_LEFT")
 
     StackLayout(
       ~mainContent
     )
-      slot(name="main")
+      slot(:name="LOCAL_ENUMS.SLOT_MAIN")
 </template>
 
 <script>
@@ -74,8 +74,20 @@ export default {
         GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.SIZE].validator.includes(value)
     }
   },
+  data: () => ({
+    LOCAL_ENUMS
+  }),
   computed: {
-    drawerSize () {
+    takeActionBarHidden () {
+      return this[LOCAL_ENUMS.ACTION_BAR_HIDDEN]
+    },
+    takeGestureEnabled () {
+      return this[LOCAL_ENUMS.GESTURE_ENABLED]
+    },
+    takeLeftSwipeDistance () {
+      return this[LOCAL_ENUMS.LEFT_SWIPE_DISTANCE]
+    },
+    takeDrawerSize () {
       return {
         xs: '15%',
         sm: '30%',
@@ -92,10 +104,10 @@ export default {
         toggle,
         open,
         close
-      } = this.$refs.drawer
+      } = this.$refs[LOCAL_ENUMS.DRAWER_REF]
 
-      this.$emit('loaded', {
-        drawer: {
+      this.$emit(GLOBAL_ENUMS.EVENT_LOADED, {
+        [LOCAL_ENUMS.DRAWER_REF]: {
           open,
           close,
           toggle
@@ -103,7 +115,7 @@ export default {
       })
     },
     onDrawerChange ({ eventName, side, duration }) {
-      this.$emit('change', {
+      this.$emit(GLOBAL_ENUMS.EVENT_CHANGE, {
         eventName,
         side,
         duration

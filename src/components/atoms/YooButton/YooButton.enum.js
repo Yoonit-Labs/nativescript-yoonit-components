@@ -18,16 +18,15 @@ export const VARIATION = 'variation'
 export const FORMAT = 'format'
 
 const VARIATIONS = [
-  'base',
+  'filled',
   'outline',
   'clear'
 ]
 
 const FORMATS = [
-  'block',
-  'text',
+  'rectangular',
   'square',
-  'mini'
+  'spherical'
 ]
 
 export const OPTIONS = {
