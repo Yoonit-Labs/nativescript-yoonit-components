@@ -15,7 +15,6 @@
  */
 
 // https://docs.nativescript.org/webpack
-const { resolve } = require('path')
 
 module.exports = config => {
   config.module
