@@ -16,12 +16,14 @@
 
 import yooComponents from './components'
 import {
-  YooComponentName
+  YooComponentName,
+  YooDimensions
 } from './components/bosons'
 
 const $yoo = {
   install: Vue => {
     Vue.mixin(YooComponentName)
+    Vue.use(YooDimensions)
     // Auto-register lib components
     Object
       .entries(yooComponents)

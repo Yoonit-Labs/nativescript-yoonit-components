@@ -15,7 +15,9 @@
  */
 
 import YooComponentName from './YooComponentName'
+import YooDimensions from './YooDimensions'
 
 export {
-  YooComponentName
+  YooComponentName,
+  YooDimensions
 }
