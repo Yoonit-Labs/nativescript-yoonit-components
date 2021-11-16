@@ -8,6 +8,7 @@ module.exports = {
   purge: {
     enabled: false
   },
+  important: true,
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     colors,

@@ -14,18 +14,6 @@
  * Luigui Delyer @ 2021
  */
 
-import {
-  YooSliderPage,
-  YooScrollDockPage,
-  YooButton,
-  YooInputText
-} from './atoms'
-
-const yooComponents = {
-  YooSliderPage,
-  YooScrollDockPage,
-  YooButton,
-  YooInputText
-}
-
-export default yooComponents
+export const PLACEHOLDER = 'placeholder'
+export const REQUIRED = 'required'
+export const VALIDATION = 'validation'

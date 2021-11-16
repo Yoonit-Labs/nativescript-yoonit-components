@@ -14,7 +14,6 @@
  * Luigui Delyer @ 2021
  */
 
-export const ACTION_BAR_HIDDEN = 'actionBarHidden'
 export const GESTURE_ENABLED = 'gestureEnabled'
 export const LEFT_SWIPE_DISTANCE = 'leftSwipeDistance'
 export const SLOT_MAIN = 'main'

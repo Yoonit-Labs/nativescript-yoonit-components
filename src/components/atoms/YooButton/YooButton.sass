@@ -1,4 +1,22 @@
+/**
+ * ██╗   ██╗ ██████╗  ██████╗ ███╗   ██╗██╗████████╗
+ * ╚██╗ ██╔╝██╔═══██╗██╔═══██╗████╗  ██║██║╚══██╔══╝
+ *  ╚████╔╝ ██║   ██║██║   ██║██╔██╗ ██║██║   ██║
+ *   ╚██╔╝  ██║   ██║██║   ██║██║╚██╗██║██║   ██║
+ *    ██║   ╚██████╔╝╚██████╔╝██║ ╚████║██║   ██║
+ *    ╚═╝    ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝   ╚═╝
+ *
+ * https://yoonit.dev - about@yoonit.dev
+ *
+ * NativeScript Yoonit Components
+ * NativeScript VueJS Atomic Design System framework
+ *
+ * Luigui Delyer @ 2021
+ */
+
 @import "../../quarks/YooAnimationPulse"
+@import "../../quarks/YooFill"
+@import "../../quarks/YooSizeAndFormat"
 
 .yoonit
   &-button
@@ -15,19 +33,9 @@
 
     // SIZE + FORMAT
     $sizes: "xxs" 6 14 "xs", "xs" 7 20 "xs", "sm" 8 25 "sm", "md" 12 31 "md", "lg" 14 44 "lg", "xl" 17 63 "xl", "xxl" 22 83 "xxl"
+    $child: "text", "icon"
     $tailwindMultiplier: 4
-    @each $size, $aspectHeight, $aspectWidth, $fontSize in $sizes
-      &--#{ $size }
-        &#{ $root }--rectangular
-          @apply yoo-h-#{ $aspectHeight * $tailwindMultiplier } yoo-w-#{ $aspectWidth * $tailwindMultiplier }
-
-        &#{ $root }--square,
-        &#{ $root }--spherical
-          @apply yoo-h-#{ $aspectHeight * $tailwindMultiplier } yoo-w-#{ $aspectHeight * $tailwindMultiplier }
-
-        #{ $root }__text,
-        #{ $root }__icon
-          @apply yoo-text-#{ $fontSize }
+    +YooSizeAndFormat($root, $tailwindMultiplier, $sizes, $child)
 
     // FILL + VARIATION
     &--filled
@@ -39,25 +47,9 @@
     &--clear
       @apply yoo-border-0 yoo-border-transparent yoo-bg-transparent yoo-z-0
 
-    $fills: "primary" "primary" "black" "primary", "danger" "danger" "white" "danger", "grey" "grey" "grey-darkest" "grey-darkest", "disable" "grey-light" "grey" "grey", "light" "white" "black" "white", "dark" "black" "white" "black"
-    @each $fillName, $fillColor, $textColor, $clearTextColor in $fills
-      &--fill-#{ $fillName }
-        &#{ $root }--filled
-          @apply yoo-bg-#{ $fillColor }
-
-          #{ $root }__text,
-          #{ $root }__icon
-            @apply yoo-text-#{ $textColor }
-
-        &#{ $root }--outline,
-        &#{ $root }--filled
-          @apply yoo-border-#{ $fillColor }
-
-        &#{ $root }--clear,
-        &#{ $root }--outline
-          #{ $root }__text,
-          #{ $root }__icon
-            @apply yoo-text-#{ $clearTextColor }
+    $fills: "primary" "primary" "white" "primary", "secondary" "secondary" "white" "secondary", "danger" "danger" "white" "danger", "grey" "grey" "grey-darkest" "grey-darkest", "disable" "grey-light" "grey" "grey", "light" "white" "black" "white", "dark" "black" "white" "black"
+    $child: "text", "icon"
+    +YooFill($root, $fills, $child)
 
     // ANIMATION
     &#{ $root }--animation-pulse

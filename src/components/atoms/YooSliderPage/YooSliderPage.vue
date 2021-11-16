@@ -1,6 +1,6 @@
 <template lang="pug">
 Page(
-  :actionBarHidden="takeActionBarHidden"
+  v-on="takeAttributes"
   @loaded="onPageLoaded"
 )
   Drawer(
@@ -55,10 +55,6 @@ export default {
     type: 'atom'
   },
   props: {
-    [LOCAL_ENUMS.ACTION_BAR_HIDDEN]: {
-      type: Boolean,
-      default: true
-    },
     [LOCAL_ENUMS.GESTURE_ENABLED]: {
       type: Boolean,
       default: true
@@ -78,8 +74,8 @@ export default {
     LOCAL_ENUMS
   }),
   computed: {
-    takeActionBarHidden () {
-      return this[LOCAL_ENUMS.ACTION_BAR_HIDDEN]
+    takeAttributes () {
+      return this.$attrs
     },
     takeGestureEnabled () {
       return this[LOCAL_ENUMS.GESTURE_ENABLED]

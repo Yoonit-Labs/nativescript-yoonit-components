@@ -6,6 +6,13 @@ module.exports = {
     light: '#B0E7E5',
     lightest: '#C3ECEb'
   },
+  secondary: {
+    darkest: '#701A75',
+    dark: '#A21CAF',
+    DEFAULT: '#D946EF',
+    light: '#F0ABFC',
+    lightest: '#FAE8FF'
+  },
   danger: {
     darkest: '#CB0A22',
     dark: '#E83C4B',

@@ -1,0 +1,13 @@
+=YooSizeAndFormat($context, $multiplier, $sizes, $child)
+  @each $size, $aspectHeight, $aspectWidth, $fontSize in $sizes
+    &--#{ $size }
+      &#{ $context }--rectangular
+        @apply yoo-h-#{ $aspectHeight * $multiplier } yoo-w-#{ $aspectWidth * $multiplier }
+
+      &#{ $context }--square,
+      &#{ $context }--spherical
+        @apply yoo-h-#{ $aspectHeight * $multiplier } yoo-w-#{ $aspectHeight * $multiplier }
+
+      @each $name in $child
+        #{ $context }__#{ $name }
+          @apply yoo-text-#{ $fontSize }

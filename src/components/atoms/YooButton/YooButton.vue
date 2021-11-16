@@ -1,52 +1,69 @@
 <template lang="pug">
-  Button.yoonit-button(
-    :class="takeButtonClasses"
-    v-on="takeButtonListeners"
-    v-bind="takeButtonAttributes"
+Button.yoonit-button(
+  :class="takeButtonClasses"
+  v-on="takeButtonListeners"
+  v-bind="takeButtonAttributes"
+)
+  FormattedString.yoonit-button__content(
+    v-if="takeIconPosition === 'left'"
   )
-    FormattedString.yoonit-button__content(
-      v-if="takeIconPosition === 'left'"
+    Span.yoonit-button__icon(
+      v-show="takeIconDraw"
+      :class="takeIconClasses"
+      :text="takeIconDraw"
     )
-      Span.yoonit-button__icon(
-        v-show="takeIconDraw"
-        :class="takeIconClasses"
-        :text="takeIconDraw"
-      )
 
-      Span.yoonit-button__space(
-        :text="(takeTextContent && takeIconDraw) ? '__' : ''"
-      )
-
-      Span.yoonit-button__text(
-        v-show="takeTextContent"
-        :text="takeTextContent"
-      )
-
-    FormattedString.yoonit-button__content(
-      v-else-if="takeIconPosition === 'right'"
+    Span.yoonit-button__space(
+      :text="(takeTextContent && takeIconDraw) ? '__' : ''"
     )
-      Span.yoonit-button__text(
-        v-show="takeTextContent"
-        :text="takeTextContent"
-      )
 
-      Span.yoonit-button__space(
-        :text="(takeTextContent && takeIconDraw) ? '__' : ''"
-      )
+    Span.yoonit-button__text(
+      v-show="takeTextContent"
+      :text="takeTextContent"
+    )
 
-      Span.yoonit-button__icon(
-        v-show="takeIconDraw"
-        :class="takeIconClasses"
-        :text="takeIconDraw"
-      )
+  FormattedString.yoonit-button__content(
+    v-else-if="takeIconPosition === 'right'"
+  )
+    Span.yoonit-button__text(
+      v-show="takeTextContent"
+      :text="takeTextContent"
+    )
+
+    Span.yoonit-button__space(
+      :text="(takeTextContent && takeIconDraw) ? '__' : ''"
+    )
+
+    Span.yoonit-button__icon(
+      v-show="takeIconDraw"
+      :class="takeIconClasses"
+      :text="takeIconDraw"
+    )
 </template>
 
 <script>
-import * as LOCAL_ENUMS from './YooButton.enum'
+/**
+ * ██╗   ██╗ ██████╗  ██████╗ ███╗   ██╗██╗████████╗
+ * ╚██╗ ██╔╝██╔═══██╗██╔═══██╗████╗  ██║██║╚══██╔══╝
+ *  ╚████╔╝ ██║   ██║██║   ██║██╔██╗ ██║██║   ██║
+ *   ╚██╔╝  ██║   ██║██║   ██║██║╚██╗██║██║   ██║
+ *    ██║   ╚██████╔╝╚██████╔╝██║ ╚████║██║   ██║
+ *    ╚═╝    ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝   ╚═╝
+ *
+ * https://yoonit.dev - about@yoonit.dev
+ *
+ * NativeScript Yoonit Components
+ * NativeScript VueJS Atomic Design System framework
+ *
+ * Luigui Delyer @ 2021
+ */
 import { GLOBAL_ENUMS } from '../../quarks'
 
 export default {
   name: 'YooButton',
+  atomic: {
+    type: 'atom'
+  },
   props: {
     [GLOBAL_ENUMS.SIZE]: {
       type: String,
@@ -54,17 +71,17 @@ export default {
       validator: value =>
         GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.SIZE].validator.includes(value)
     },
-    [LOCAL_ENUMS.FORMAT]: {
+    [GLOBAL_ENUMS.FORMAT]: {
       type: String,
-      default: LOCAL_ENUMS.OPTIONS[LOCAL_ENUMS.FORMAT].default,
+      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.FORMAT].default,
       validator: value =>
-        LOCAL_ENUMS.OPTIONS[LOCAL_ENUMS.FORMAT].validator.includes(value)
+        GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.FORMAT].validator.includes(value)
     },
-    [LOCAL_ENUMS.VARIATION]: {
+    [GLOBAL_ENUMS.VARIATION]: {
       type: String,
-      default: LOCAL_ENUMS.OPTIONS[LOCAL_ENUMS.VARIATION].default,
+      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.VARIATION].default,
       validator: value =>
-        LOCAL_ENUMS.OPTIONS[LOCAL_ENUMS.VARIATION].validator.includes(value)
+        GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.VARIATION].validator.includes(value)
     },
     [GLOBAL_ENUMS.FILL]: {
       type: String,
@@ -110,34 +127,13 @@ export default {
      */
     takeButtonClasses () {
       const BLOCK = this.$yooComponentName
-      const classList = []
-
-      classList
-        .push(
-          `${BLOCK}--${this[GLOBAL_ENUMS.SIZE]}`
-        )
-
-      classList
-        .push(
-          `${BLOCK}--${this[LOCAL_ENUMS.FORMAT]}`
-        )
-
-      classList
-        .push(
-          `${BLOCK}--${this[LOCAL_ENUMS.VARIATION]}`
-        )
-
-      classList
-        .push(
-          `${BLOCK}--fill-${this[GLOBAL_ENUMS.FILL]}`
-        )
-
-      classList
-        .push(
-          `${BLOCK}--animation-${this[GLOBAL_ENUMS.ANIMATION]}`
-        )
-
-      return classList
+      return [
+        `${BLOCK}--${this[GLOBAL_ENUMS.SIZE]}`,
+        `${BLOCK}--${this[GLOBAL_ENUMS.FORMAT]}`,
+        `${BLOCK}--${this[GLOBAL_ENUMS.VARIATION]}`,
+        `${BLOCK}--fill-${this[GLOBAL_ENUMS.FILL]}`,
+        `${BLOCK}--animation-${this[GLOBAL_ENUMS.ANIMATION]}`
+      ]
     },
     /**
      * @description Returns text
@@ -181,4 +177,4 @@ export default {
 }
 </script>
 
-<style lang="sass" src="./YooButton.sass" />
+<style scoped lang="sass" src="./YooButton.sass"/>

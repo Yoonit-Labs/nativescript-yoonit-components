@@ -1,0 +1,70 @@
+/**
+ * ██╗   ██╗ ██████╗  ██████╗ ███╗   ██╗██╗████████╗
+ * ╚██╗ ██╔╝██╔═══██╗██╔═══██╗████╗  ██║██║╚══██╔══╝
+ *  ╚████╔╝ ██║   ██║██║   ██║██╔██╗ ██║██║   ██║
+ *   ╚██╔╝  ██║   ██║██║   ██║██║╚██╗██║██║   ██║
+ *    ██║   ╚██████╔╝╚██████╔╝██║ ╚████║██║   ██║
+ *    ╚═╝    ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝   ╚═╝
+ *
+ * https://yoonit.dev - about@yoonit.dev
+ *
+ * NativeScript Yoonit Components
+ * NativeScript VueJS Atomic Design System framework
+ *
+ * Luigui Delyer @ 2021
+ */
+
+@import "../../quarks/YooFill"
+@import "../../quarks/YooSizeAndFormat"
+
+.yoonit
+  &-input-text
+    $root: &
+    @apply yoo-font-mont-regular yoo-font-normal yoo-bg-transparent
+
+    #{ $root }__feedback
+      @apply yoo-font-mont-semibold yoo-font-semibold
+
+    #{ $root }__placeholder,
+    #{ $root }__feedback
+      @apply yoo-bg-transparent yoo-z-0
+
+    // SIZE + FORMAT
+    #{ $root }__field
+      @apply yoo-py-0
+
+      &#{ $root }--rectangular,
+      &#{ $root }--spherical
+        @apply yoo-rounded-xxl
+
+    #{ $root }__placeholder
+      @apply yoo-mb-4
+
+    $primarySizes: "xxs" 10 14 "xs", "xs" 12 20 "xs", "sm" 18 25 "sm", "md" 20 31 "md", "lg" 24 44 "lg", "xl" 30 63 "xl", "xxl" 38 83 "xxl"
+    $primaryChild: "field"
+    $tailwindMultiplier: 4
+    +YooSizeAndFormat($root, $tailwindMultiplier, $primarySizes, $primaryChild)
+
+    $secondarySizes: "xxs" 1 1 "xs", "xs" 1 1 "xs", "sm" 2 1 "sm", "md" 3 2 "sm", "lg" 4 3 "md", "xl" 5 4 "lg", "xxl" 6 5 "xl"
+    @each $size, $paddingXSize, $paddingYSize, $fontSize in $secondarySizes
+      &--#{ $size }
+        #{ $root }__field
+          @apply yoo-px-#{ $paddingXSize * $tailwindMultiplier } yoo-py-#{ $paddingYSize * $tailwindMultiplier }
+
+        #{ $root }__placeholder,
+        #{ $root }__feedback
+          @apply yoo-text-#{ $fontSize }
+
+    // FILL + VARIATION
+    &--filled
+      @apply yoo-border-2 yoo-border-solid yoo-z-0
+
+    &--outline
+      @apply yoo-border-2 yoo-border-solid yoo-bg-transparent yoo-z-0
+
+    &--clear
+      @apply yoo-border-0 yoo-border-transparent yoo-bg-transparent yoo-z-0
+
+    $fills: "primary" "primary" "white" "primary", "secondary" "secondary" "white" "secondary", "danger" "danger" "white" "danger", "grey" "grey-dark" "grey-dark" "grey-dark", "disable" "grey-light" "grey" "grey", "light" "white" "black" "white", "dark" "black" "white" "black"
+    $fillsChild: "placeholder", "field", "feedback"
+    +YooFill($root, $fills, $fillsChild)

@@ -23,6 +23,24 @@ export const TEXT_COLOR = 'textColor'
 export const ANIMATION = 'animation'
 export const EVENT_LOADED = 'loaded'
 export const EVENT_CHANGE = 'change'
+export const VARIATION = 'variation'
+export const FORMAT = 'format'
+export const ID = 'id'
+export const FEEDBACK = 'feedback'
+export const INPUT = 'input'
+export const OUTPUT = 'output'
+
+const VARIATIONS = [
+  'filled',
+  'outline',
+  'clear'
+]
+
+const FORMATS = [
+  'rectangular',
+  'square',
+  'spherical'
+]
 
 const SIZES = [
   'xxs',
@@ -60,6 +78,11 @@ const ANIMATIONS = [
   'pulse'
 ]
 
+const FEEDBACKS = [
+  'error',
+  'success'
+]
+
 export const OPTIONS = {
   [SIZE]: {
     default: SIZES[3],
@@ -84,5 +107,17 @@ export const OPTIONS = {
   [ANIMATION]: {
     default: ANIMATIONS[0],
     validator: ANIMATIONS
+  },
+  [VARIATION]: {
+    default: VARIATIONS[0],
+    validator: VARIATIONS
+  },
+  [FORMAT]: {
+    default: FORMATS[0],
+    validator: FORMATS
+  },
+  [FEEDBACK]: {
+    default: FEEDBACKS[0],
+    validator: FEEDBACKS
   }
 }

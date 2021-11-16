@@ -14,18 +14,6 @@
  * Luigui Delyer @ 2021
  */
 
-import {
-  YooSliderPage,
-  YooScrollDockPage,
-  YooButton,
-  YooInputText
-} from './atoms'
+import YooScrollDockPage from './YooScrollDockPage'
 
-const yooComponents = {
-  YooSliderPage,
-  YooScrollDockPage,
-  YooButton,
-  YooInputText
-}
-
-export default yooComponents
+export default YooScrollDockPage

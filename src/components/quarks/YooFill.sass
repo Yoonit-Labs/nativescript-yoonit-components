@@ -1,0 +1,27 @@
+=YooFill($context, $fills, $child)
+  @each $fillName, $fillColor, $textColor, $clearTextColor in $fills
+    &--filled
+      &#{ $context }--fill-#{ $fillName }
+        @apply yoo-bg-#{ $fillColor }
+
+        @each $name in $child
+          #{ $context }__#{ $name }
+            @apply yoo-text-#{ $textColor }
+
+            &--error
+              @apply yoo-text-danger
+
+    &--outline,
+    &--filled
+      &#{ $context }--fill-#{ $fillName }
+        @apply yoo-border-#{ $fillColor }
+
+    &--outline,
+    &--clear
+      &#{ $context }--fill-#{ $fillName }
+        @each $name in $child
+          #{ $context }__#{ $name }
+            @apply yoo-text-#{ $clearTextColor }
+
+            &--error
+              @apply yoo-text-danger

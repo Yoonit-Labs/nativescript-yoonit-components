@@ -1,3 +1,17 @@
+<template lang="pug">
+Page.page(
+  v-on="takeAttributes"
+  width="100%"
+  height="100%"
+)
+  ScrollView
+    DockLayout.page__slot(
+      stretchLastChild="false"
+    )
+      slot
+</template>
+
+<script>
 /**
  * ██╗   ██╗ ██████╗  ██████╗ ███╗   ██╗██╗████████╗
  * ╚██╗ ██╔╝██╔═══██╗██╔═══██╗████╗  ██║██║╚══██╔══╝
@@ -14,18 +28,17 @@
  * Luigui Delyer @ 2021
  */
 
-import {
-  YooSliderPage,
-  YooScrollDockPage,
-  YooButton,
-  YooInputText
-} from './atoms'
-
-const yooComponents = {
-  YooSliderPage,
-  YooScrollDockPage,
-  YooButton,
-  YooInputText
+export default {
+  name: 'YooScrollDockPage',
+  atomic: {
+    type: 'atom'
+  },
+  computed: {
+    takeAttributes () {
+      return this.$attrs
+    }
+  }
 }
+</script>
 
-export default yooComponents
+<style scoped lang="sass" src="./YooScrollDockPage.sass"/>
