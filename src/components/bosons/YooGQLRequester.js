@@ -26,15 +26,18 @@ import {
 const YooGQLRequester = async ({
   url = '',
   query = '',
-  headers = {
-    'Content-Type': 'application/json'
-  },
+  headers = {},
 }) => {
   if (!url ||
       url.constructor !== String ||
       !query ||
       query.constructor !== String) {
     return
+  }
+
+  headers = {
+    'Content-Type': 'application/json',
+    ...headers
   }
 
   const queryByOS = isAndroid

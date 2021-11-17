@@ -32,11 +32,6 @@ const YooHTTP = async ({
     return
   }
 
-  headers = {
-    'Content-Type': 'application/json',
-    ...headers
-  }
-
   const request = {
     url,
     method,
