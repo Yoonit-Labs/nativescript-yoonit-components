@@ -21,7 +21,6 @@
  *  @return {Array} [response, error]
  */
 const YooPromise = promise => {
-  console.log('[YOOPROMISE]')
   if (!promise) {
     return
   }

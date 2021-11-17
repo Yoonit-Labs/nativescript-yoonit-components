@@ -25,20 +25,22 @@ import {
 const YooHTTP = async ({
   url = '',
   payload = '',
-  headers = {
-    'Content-Type': 'application/json'
-  },
+  headers = {},
   method = 'POST'
 }) => {
-  console.log('[YOOHTTP]')
   if (!url || url.constructor !== String) {
     return
+  }
+
+  headers = {
+    'Content-Type': 'application/json',
+    ...headers
   }
 
   const request = {
     url,
     method,
-    content: JSON.stringify(payload),
+    content: payload,
     headers,
     timeout: 10000
   }
@@ -50,7 +52,7 @@ const YooHTTP = async ({
   const [
     success,
     error
-  ] = YooPromise(
+  ] = await YooPromise(
     Http
       .request(
         request

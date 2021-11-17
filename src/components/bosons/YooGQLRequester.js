@@ -25,9 +25,11 @@ import {
 
 const YooGQLRequester = async ({
   url = '',
-  query = ''
+  query = '',
+  headers = {
+    'Content-Type': 'application/json'
+  },
 }) => {
-  console.log('[YOOGQLREQUESTER]')
   if (!url ||
       url.constructor !== String ||
       !query ||
@@ -40,11 +42,15 @@ const YooGQLRequester = async ({
     : { query }
 
   const [
-    success,
+    {
+      content,
+      statusCode: status
+    },
     error
-  ] = YooPromise(
+  ] = await YooPromise(
     YooHTTP({
       url,
+      headers,
       payload: queryByOS
     })
   )
@@ -53,7 +59,10 @@ const YooGQLRequester = async ({
     return error
   }
 
-  return success
+  return {
+    content,
+    status
+  }
 }
 
 export default YooGQLRequester
