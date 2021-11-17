@@ -112,6 +112,7 @@ export default {
   computed: {
     takeRootClasses () {
       const BLOCK = this.$yooComponentName
+
       return [
         `${BLOCK}--${this[GLOBAL_ENUMS.SIZE]}`,
         `${BLOCK}--fill-${this[GLOBAL_ENUMS.FILL]}`,

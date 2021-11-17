@@ -14,34 +14,36 @@
  * Luigui Delyer @ 2021
  */
 
-import yooComponents from './components'
 import {
-  YooComponentName,
-  YooDimensions,
-  YooCipher,
-  YooPromise,
-  YooHTTP,
-  YooGQLRequester
-} from './components/bosons'
+  isAndroid
+} from '@nativescript/core'
 
-const $yoo = {
-  install: Vue => {
-    Vue.mixin(YooComponentName)
-    Vue.use(YooDimensions)
-    // Auto-register lib components
-    Object
-      .entries(yooComponents)
-      .forEach(([name, code]) =>
-        Vue.component(name, code)
-      )
+import {
+  YooPromise,
+  YooHTTP
+} from './index'
+
+const YooGQLRequester = async ({
+  url = '',
+  query = ''
+}) => {
+  if (!url ||
+      url.constructor !== String ||
+      !query ||
+      query.constructor !== String) {
+    return
   }
+
+  const queryByOS = isAndroid
+    ? JSON.stringify({ query })
+    : { query }
+
+  return YooPromise(
+    YooHTTP({
+      url,
+      payload: queryByOS
+    })
+  )
 }
 
-export default $yoo
-
-export {
-  YooCipher,
-  YooPromise,
-  YooHTTP,
-  YooGQLRequester
-}
+export default YooGQLRequester

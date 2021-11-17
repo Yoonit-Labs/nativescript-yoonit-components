@@ -16,8 +16,16 @@
 
 import YooComponentName from './YooComponentName'
 import YooDimensions from './YooDimensions'
+import YooCipher from './YooCipher'
+import YooPromise from './YooPromise'
+import YooHTTP from './YooHTTP'
+import YooGQLRequester from './YooGQLRequester'
 
 export {
   YooComponentName,
-  YooDimensions
+  YooDimensions,
+  YooCipher,
+  YooPromise,
+  YooHTTP,
+  YooGQLRequester
 }

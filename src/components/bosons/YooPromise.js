@@ -14,34 +14,47 @@
  * Luigui Delyer @ 2021
  */
 
-import yooComponents from './components'
-import {
-  YooComponentName,
-  YooDimensions,
-  YooCipher,
-  YooPromise,
-  YooHTTP,
-  YooGQLRequester
-} from './components/bosons'
+/*
+ *  Improve Promise and Async/Await methods and error handling
+ *  @method YooPromise
+ *  @param  {Promise} receive a promise to add response and catch
+ *  @return {Array} [response, error]
+ */
+const YooPromise = promise => {
+  if (!promise) {
+    return
+  }
 
-const $yoo = {
-  install: Vue => {
-    Vue.mixin(YooComponentName)
-    Vue.use(YooDimensions)
-    // Auto-register lib components
-    Object
-      .entries(yooComponents)
-      .forEach(([name, code]) =>
-        Vue.component(name, code)
+  try {
+    return promise
+      .then(
+        data =>
+          (
+            [
+              data,
+              undefined
+            ]
+          )
+      )
+      .catch(
+        error =>
+          Promise
+            .resolve(
+              [
+                undefined,
+                error
+              ]
+            )
+      )
+  } catch (error) {
+    return Promise
+      .resolve(
+        [
+          undefined,
+          error
+        ]
       )
   }
 }
 
-export default $yoo
-
-export {
-  YooCipher,
-  YooPromise,
-  YooHTTP,
-  YooGQLRequester
-}
+export default YooPromise

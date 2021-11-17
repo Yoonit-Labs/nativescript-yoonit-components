@@ -1,12 +1,13 @@
 <template lang="pug">
-Page.page(
+Page.yoonit-scroll-dock-page(
   v-on="takeAttributes"
   width="100%"
   height="100%"
 )
   ScrollView
-    DockLayout.page__slot(
+    DockLayout.yoonit-scroll-dock-page__slot(
       stretchLastChild="false"
+      :class="takeSlotClasses"
     )
       slot
 </template>
@@ -28,14 +29,29 @@ Page.page(
  * Luigui Delyer @ 2021
  */
 
+import { GLOBAL_ENUMS } from '../../quarks'
+
 export default {
   name: 'YooScrollDockPage',
   atomic: {
     type: 'atom'
   },
+  props: {
+    [GLOBAL_ENUMS.SIZE]: {
+      type: String,
+      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.SIZE].default,
+      validator: value =>
+        GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.SIZE].validator.includes(value)
+    }
+  },
   computed: {
     takeAttributes () {
       return this.$attrs
+    },
+    takeSlotClasses () {
+      const BLOCK = this.$yooComponentName
+
+      return `${BLOCK}__slot--${this[GLOBAL_ENUMS.SIZE]}`
     }
   }
 }

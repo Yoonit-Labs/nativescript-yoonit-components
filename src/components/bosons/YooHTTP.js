@@ -14,34 +14,44 @@
  * Luigui Delyer @ 2021
  */
 
-import yooComponents from './components'
 import {
-  YooComponentName,
-  YooDimensions,
-  YooCipher,
-  YooPromise,
-  YooHTTP,
-  YooGQLRequester
-} from './components/bosons'
+  Http
+} from '@nativescript/core'
 
-const $yoo = {
-  install: Vue => {
-    Vue.mixin(YooComponentName)
-    Vue.use(YooDimensions)
-    // Auto-register lib components
-    Object
-      .entries(yooComponents)
-      .forEach(([name, code]) =>
-        Vue.component(name, code)
-      )
+import {
+  YooPromise
+} from './index'
+
+const YooHTTP = async ({
+  url = '',
+  payload = '',
+  headers = {
+    'Content-Type': 'application/json'
+  },
+  method = 'POST'
+}) => {
+  if (!url || url.constructor !== String) {
+    return
   }
+
+  const request = {
+    url,
+    method,
+    content: JSON.stringify(payload),
+    headers,
+    timeout: 10000
+  }
+
+  if (method === 'GET') {
+    delete request.content
+  }
+
+  return YooPromise(
+    Http
+      .request(
+        request
+      )
+  )
 }
 
-export default $yoo
-
-export {
-  YooCipher,
-  YooPromise,
-  YooHTTP,
-  YooGQLRequester
-}
+export default YooHTTP
