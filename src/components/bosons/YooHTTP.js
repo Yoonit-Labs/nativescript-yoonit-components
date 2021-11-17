@@ -30,6 +30,7 @@ const YooHTTP = async ({
   },
   method = 'POST'
 }) => {
+  console.log('[YOOHTTP]')
   if (!url || url.constructor !== String) {
     return
   }
@@ -46,12 +47,21 @@ const YooHTTP = async ({
     delete request.content
   }
 
-  return YooPromise(
+  const [
+    success,
+    error
+  ] = YooPromise(
     Http
       .request(
         request
       )
   )
+
+  if (error) {
+    return error
+  }
+
+  return success
 }
 
 export default YooHTTP

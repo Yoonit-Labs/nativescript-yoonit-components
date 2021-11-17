@@ -19,14 +19,15 @@ import {
 } from '@nativescript/core'
 
 import {
-  YooPromise,
-  YooHTTP
+  YooHTTP,
+  YooPromise
 } from './index'
 
 const YooGQLRequester = async ({
   url = '',
   query = ''
 }) => {
+  console.log('[YOOGQLREQUESTER]')
   if (!url ||
       url.constructor !== String ||
       !query ||
@@ -38,12 +39,21 @@ const YooGQLRequester = async ({
     ? JSON.stringify({ query })
     : { query }
 
-  return YooPromise(
+  const [
+    success,
+    error
+  ] = YooPromise(
     YooHTTP({
       url,
       payload: queryByOS
     })
   )
+
+  if (error) {
+    return error
+  }
+
+  return success
 }
 
 export default YooGQLRequester
