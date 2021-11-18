@@ -16,16 +16,26 @@
 
 import {
   YooSliderPage,
-  YooScrollDockPage,
+  YooDockPage,
   YooButton,
   YooInputText
 } from './atoms'
 
+import {
+  YooHeader
+} from './molecules'
+
+import {
+  YooScrollPage
+} from './organisms'
+
 const yooComponents = {
   YooSliderPage,
-  YooScrollDockPage,
+  YooDockPage,
   YooButton,
-  YooInputText
+  YooInputText,
+  YooHeader,
+  YooScrollPage
 }
 
 export default yooComponents

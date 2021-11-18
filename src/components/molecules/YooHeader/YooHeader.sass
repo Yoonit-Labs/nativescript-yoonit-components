@@ -1,0 +1,48 @@
+/**
+ * ██╗   ██╗ ██████╗  ██████╗ ███╗   ██╗██╗████████╗
+ * ╚██╗ ██╔╝██╔═══██╗██╔═══██╗████╗  ██║██║╚══██╔══╝
+ *  ╚████╔╝ ██║   ██║██║   ██║██╔██╗ ██║██║   ██║
+ *   ╚██╔╝  ██║   ██║██║   ██║██║╚██╗██║██║   ██║
+ *    ██║   ╚██████╔╝╚██████╔╝██║ ╚████║██║   ██║
+ *    ╚═╝    ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝   ╚═╝
+ *
+ * https://yoonit.dev - about@yoonit.dev
+ *
+ * NativeScript Yoonit Components
+ * NativeScript VueJS Atomic Design System framework
+ *
+ * Luigui Delyer @ 2021
+ */
+
+@import "../../quarks/YooSize"
+@import "../../quarks/YooFill"
+
+.yoonit
+  &-header
+    $root: &
+    @apply yoo-font-mont-semibold yoo-font-semibold
+
+    // SIZE
+    $tailwindMultiplier: 4
+
+    $paddingSizes: "xxs" 0, "xs" 1, "sm" 2, "md" 3, "lg" 5, "xl" 7, "xxl" 10
+    $paddingArea: "p"
+    +YooSize($paddingArea, $tailwindMultiplier, $paddingSizes)
+
+    $heightSizes: "xxs" 4, "xs" 1, "sm" 2, "md" 15, "lg" 5, "xl" 7, "xxl" 10
+    $heightArea: "h"
+    +YooSize($heightArea, $tailwindMultiplier, $heightSizes)
+
+    // FILL + VARIATION
+    &--filled
+      @apply yoo-border-2 yoo-border-solid yoo-z-0
+
+    &--outline
+      @apply yoo-border-2 yoo-border-solid yoo-bg-transparent yoo-z-0
+
+    &--clear
+      @apply yoo-border-0 yoo-border-transparent yoo-bg-transparent yoo-z-0
+
+    $fills: "primary" "primary" "white" "primary", "secondary" "secondary" "white" "secondary", "danger" "danger" "white" "danger", "grey" "grey" "grey-darkest" "grey-darkest", "disable" "grey-light" "grey" "grey", "light" "white" "black" "white", "dark" "black" "white" "black"
+    $child: ""
+    +YooFill($root, $fills, $child)

@@ -14,6 +14,6 @@
  * Luigui Delyer @ 2021
  */
 
-import YooScrollDockPage from './YooScrollDockPage'
+import YooHeader from './YooHeader'
 
-export default YooScrollDockPage
+export default YooHeader

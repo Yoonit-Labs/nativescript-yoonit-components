@@ -15,13 +15,13 @@
  */
 
 import YooSliderPage from './YooSliderPage'
-import YooScrollDockPage from './YooScrollDockPage'
+import YooDockPage from './YooDockPage'
 import YooButton from './YooButton'
 import YooInputText from './YooInputText'
 
 export {
   YooSliderPage,
-  YooScrollDockPage,
+  YooDockPage,
   YooButton,
   YooInputText
 }

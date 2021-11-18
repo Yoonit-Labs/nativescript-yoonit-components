@@ -1,15 +1,17 @@
 <template lang="pug">
-Page.yoonit-scroll-dock-page(
-  v-on="takeAttributes"
-  width="100%"
-  height="100%"
+FlexboxLayout.yoonit-header(
+  :class="takeRootClasses"
+  flexDirection="row"
+  justifyContent="space-between"
 )
-  ScrollView
-    DockLayout.yoonit-scroll-dock-page__slot(
-      stretchLastChild="false"
-      :class="takeSlotClasses"
-    )
-      slot
+  slot(:name="LOCAL_ENUMS.SLOT_LEFT")
+    Label(text="LEFT")
+
+  slot(:name="LOCAL_ENUMS.SLOT_CENTER")
+    Label(text="CENTER")
+
+  slot(:name="LOCAL_ENUMS.SLOT_RIGHT")
+    Label(text="RIGHT")
 </template>
 
 <script>
@@ -28,13 +30,13 @@ Page.yoonit-scroll-dock-page(
  *
  * Luigui Delyer @ 2021
  */
-
+import * as LOCAL_ENUMS from './YooHeader.enum'
 import { GLOBAL_ENUMS } from '../../quarks'
 
 export default {
-  name: 'YooScrollDockPage',
+  name: 'YooHeader',
   atomic: {
-    type: 'atom'
+    type: 'molecule'
   },
   props: {
     [GLOBAL_ENUMS.SIZE]: {
@@ -42,19 +44,35 @@ export default {
       default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.SIZE].default,
       validator: value =>
         GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.SIZE].validator.includes(value)
+    },
+    [GLOBAL_ENUMS.VARIATION]: {
+      type: String,
+      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.VARIATION].default,
+      validator: value =>
+        GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.VARIATION].validator.includes(value)
+    },
+    [GLOBAL_ENUMS.FILL]: {
+      type: String,
+      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.FILL].default,
+      validator: value =>
+        GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.FILL].validator.includes(value)
     }
   },
+  data: () => ({
+    LOCAL_ENUMS
+  }),
   computed: {
-    takeAttributes () {
-      return this.$attrs
-    },
-    takeSlotClasses () {
+    takeRootClasses () {
       const BLOCK = this.$yooComponentName
 
-      return `${BLOCK}__slot--${this[GLOBAL_ENUMS.SIZE]}`
+      return [
+        `${BLOCK}--${this[GLOBAL_ENUMS.SIZE]}`,
+        `${BLOCK}--${this[GLOBAL_ENUMS.VARIATION]}`,
+        `${BLOCK}--fill-${this[GLOBAL_ENUMS.FILL]}`
+      ]
     }
   }
 }
 </script>
 
-<style scoped lang="sass" src="./YooScrollDockPage.sass"/>
+<style scoped lang="sass" src="./YooHeader.sass"/>

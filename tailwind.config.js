@@ -22,11 +22,27 @@ module.exports = {
       ...spacingNumbersByScale(4),
       ...spacingPercentage
     },
+    minHeight: {
+      ...spacingNumbersByScale(4),
+      ...spacingPercentage
+    },
     height: {
       ...spacingNumbersByScale(4),
       ...spacingPercentage
     },
+    maxHeight: {
+      ...spacingNumbersByScale(4),
+      ...spacingPercentage
+    },
+    minWidth: {
+      ...spacingNumbersByScale(4),
+      ...spacingPercentage
+    },
     width: {
+      ...spacingNumbersByScale(4),
+      ...spacingPercentage
+    },
+    maxWidth: {
       ...spacingNumbersByScale(4),
       ...spacingPercentage
     },

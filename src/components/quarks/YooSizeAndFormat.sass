@@ -1,12 +1,28 @@
+/**
+ * ██╗   ██╗ ██████╗  ██████╗ ███╗   ██╗██╗████████╗
+ * ╚██╗ ██╔╝██╔═══██╗██╔═══██╗████╗  ██║██║╚══██╔══╝
+ *  ╚████╔╝ ██║   ██║██║   ██║██╔██╗ ██║██║   ██║
+ *   ╚██╔╝  ██║   ██║██║   ██║██║╚██╗██║██║   ██║
+ *    ██║   ╚██████╔╝╚██████╔╝██║ ╚████║██║   ██║
+ *    ╚═╝    ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝   ╚═╝
+ *
+ * https://yoonit.dev - about@yoonit.dev
+ *
+ * NativeScript Yoonit Components
+ * NativeScript VueJS Atomic Design System framework
+ *
+ * Luigui Delyer @ 2021
+ */
+
 =YooSizeAndFormat($context, $multiplier, $sizes, $child)
   @each $size, $aspectHeight, $aspectWidth, $fontSize in $sizes
     &--#{ $size }
       &#{ $context }--rectangular
-        @apply yoo-h-#{ $aspectHeight * $multiplier } yoo-w-#{ $aspectWidth * $multiplier }
+        @apply yoo-h-#{ $aspectHeight * $multiplier } yoo-w-#{ $aspectWidth * $multiplier } yoo-min-h-#{ $aspectHeight * $multiplier } yoo-min-w-#{ $aspectWidth * $multiplier } yoo-max-h-#{ $aspectHeight * $multiplier } yoo-max-w-#{ $aspectWidth * $multiplier }
 
       &#{ $context }--square,
       &#{ $context }--spherical
-        @apply yoo-h-#{ $aspectHeight * $multiplier } yoo-w-#{ $aspectHeight * $multiplier }
+        @apply yoo-h-#{ $aspectHeight * $multiplier } yoo-w-#{ $aspectHeight * $multiplier } yoo-min-h-#{ $aspectHeight * $multiplier } yoo-min-w-#{ $aspectHeight * $multiplier } yoo-max-h-#{ $aspectHeight * $multiplier } yoo-max-w-#{ $aspectHeight * $multiplier }
 
       @each $name in $child
         #{ $context }__#{ $name }

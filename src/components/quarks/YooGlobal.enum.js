@@ -54,6 +54,7 @@ const SIZES = [
 
 const FILLS = [
   'primary',
+  'secondary',
   'danger',
   'grey',
   'disable',

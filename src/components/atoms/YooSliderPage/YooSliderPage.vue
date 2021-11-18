@@ -1,6 +1,6 @@
 <template lang="pug">
 Page(
-  v-on="takeAttributes"
+  v-bind="takeAttributes"
   @loaded="onPageLoaded"
 )
   Drawer(

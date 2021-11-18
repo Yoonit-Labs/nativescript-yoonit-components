@@ -14,58 +14,8 @@
  * Luigui Delyer @ 2021
  */
 
-import {
-  isAndroid
-} from '@nativescript/core'
+import YooHeader from './YooHeader'
 
-import {
-  YooHTTP,
-  YooPromise
-} from './index'
-
-const YooGQLRequester = async ({
-  url = '',
-  query = '',
-  headers = {},
-}) => {
-  if (!url ||
-      url.constructor !== String ||
-      !query ||
-      query.constructor !== String) {
-    return
-  }
-
-  headers = {
-    'Content-Type': 'application/json',
-    ...headers
-  }
-
-  const queryByOS = isAndroid
-    ? JSON.stringify({ query })
-    : { query }
-
-  const [
-    {
-      content,
-      statusCode: httpStatus
-    },
-    error
-  ] = await YooPromise(
-    YooHTTP({
-      url,
-      headers,
-      payload: queryByOS
-    })
-  )
-
-  if (error) {
-    return error
-  }
-
-  return {
-    content,
-    httpStatus
-  }
+export {
+  YooHeader
 }
-
-export default YooGQLRequester

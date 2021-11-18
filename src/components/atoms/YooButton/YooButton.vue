@@ -127,6 +127,7 @@ export default {
      */
     takeButtonClasses () {
       const BLOCK = this.$yooComponentName
+
       return [
         `${BLOCK}--${this[GLOBAL_ENUMS.SIZE]}`,
         `${BLOCK}--${this[GLOBAL_ENUMS.FORMAT]}`,
