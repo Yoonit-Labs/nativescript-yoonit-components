@@ -1,3 +1,8 @@
+import {
+  YooSplitWords,
+  YooLower
+} from './YooUtils'
+
 export default {
   computed: {
     $yooComponentName () {
@@ -5,9 +10,11 @@ export default {
         return
       }
 
-      return this.$options.name
-        .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
-        .map(name => name.toLowerCase())
+      return YooLower(
+        YooSplitWords(
+          this.$options.name
+        )
+      )
         .join('-')
         .replace('yoo', 'yoonit')
     }

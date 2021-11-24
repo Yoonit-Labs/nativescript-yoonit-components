@@ -20,6 +20,16 @@ import YooCipher from './YooCipher'
 import YooPromise from './YooPromise'
 import YooHTTP from './YooHTTP'
 import YooGQLRequester from './YooGQLRequester'
+import YooSplitComponentObject from './YooSplitComponentObject'
+import {
+  YooSplitWords,
+  YooLower,
+  YooUpper,
+  YooUpperFirst,
+  YooLowerFirst,
+  YooPascal,
+  YooCamel
+} from './YooUtils'
 
 export {
   YooComponentName,
@@ -27,5 +37,13 @@ export {
   YooCipher,
   YooPromise,
   YooHTTP,
-  YooGQLRequester
+  YooGQLRequester,
+  YooSplitComponentObject,
+  YooSplitWords,
+  YooLower,
+  YooUpper,
+  YooUpperFirst,
+  YooLowerFirst,
+  YooPascal,
+  YooCamel
 }

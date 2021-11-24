@@ -4,14 +4,23 @@ FlexboxLayout.yoonit-header(
   flexDirection="row"
   justifyContent="space-between"
 )
-  slot(:name="LOCAL_ENUMS.SLOT_LEFT")
-    Label(text="LEFT")
+  slot(
+    :name="LOCAL_ENUMS.SLOT_LEFT"
+    @tap="onSlotTap(LOCAL_ENUMS.SLOT_LEFT)"
+  )
+    Label(:text="LOCAL_ENUMS.SLOT_LEFT")
 
-  slot(:name="LOCAL_ENUMS.SLOT_CENTER")
-    Label(text="CENTER")
+  slot(
+    :name="LOCAL_ENUMS.SLOT_CENTER"
+    @tap="onSlotTap(LOCAL_ENUMS.SLOT_CENTER)"
+  )
+    Label(:text="LOCAL_ENUMS.SLOT_CENTER")
 
-  slot(:name="LOCAL_ENUMS.SLOT_RIGHT")
-    Label(text="RIGHT")
+  slot(
+    :name="LOCAL_ENUMS.SLOT_RIGHT"
+    @tap="onSlotTap(LOCAL_ENUMS.SLOT_RIGHT)"
+  )
+    Label(:text="LOCAL_ENUMS.SLOT_RIGHT")
 </template>
 
 <script>
@@ -30,8 +39,10 @@ FlexboxLayout.yoonit-header(
  *
  * Luigui Delyer @ 2021
  */
-import * as LOCAL_ENUMS from './YooHeader.enum'
+
+import { YooUpperFirst } from '../../bosons'
 import { GLOBAL_ENUMS } from '../../quarks'
+import * as LOCAL_ENUMS from './YooHeader.enum'
 
 export default {
   name: 'YooHeader',
@@ -70,6 +81,11 @@ export default {
         `${BLOCK}--${this[GLOBAL_ENUMS.VARIATION]}`,
         `${BLOCK}--fill-${this[GLOBAL_ENUMS.FILL]}`
       ]
+    }
+  },
+  methods: {
+    onSlotTap (area) {
+      return this.$emit(`header${YooUpperFirst(area)}`)
     }
   }
 }

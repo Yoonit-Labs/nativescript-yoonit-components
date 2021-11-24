@@ -1,7 +1,7 @@
 <template lang="pug">
 Page.yoonit-scroll-page(
-  v-bind="takeAttributes.page"
-  v-on="takeListeners"
+  v-bind="takeAttributes.root"
+  v-on="takeListeners.root"
   width="100%"
   height="100%"
 )
@@ -14,6 +14,7 @@ Page.yoonit-scroll-page(
     YooHeader.container__header(
       v-if="takeHeaderVisibility"
       v-bind="takeAttributes.header"
+      v-on="takeListeners.header"
     )
       slot(
         :slot="YOO_HEADER_ENUMS.SLOT_LEFT"
@@ -54,9 +55,13 @@ Page.yoonit-scroll-page(
  * Luigui Delyer @ 2021
  */
 
+import {
+  YooUpperFirst,
+  YooSplitComponentObject
+} from '../../bosons'
 import { GLOBAL_ENUMS } from '../../quarks'
-import * as LOCAL_ENUMS from './YooScrollPage.enum'
 import { YooHeader } from '../../molecules'
+import * as LOCAL_ENUMS from './YooScrollPage.enum'
 import * as YOO_HEADER_ENUMS from '../../molecules/YooHeader/YooHeader.enum'
 
 export default {
@@ -88,37 +93,16 @@ export default {
       return this[LOCAL_ENUMS.HEADER]
     },
     takeAttributes () {
-      return Object
-        .entries(this.$attrs)
-        .reduce((acc, [key, value]) => {
-          if (key.includes('header')) {
-            key = key
-              .replace('header', '')
-              .toLowerCase()
-
-            return {
-              ...acc,
-              header: {
-                ...acc.header,
-                [key]: value
-              }
-            }
-          }
-
-          return {
-            ...acc,
-            page: {
-              ...acc.page,
-              [key]: value
-            }
-          }
-        }, {
-          page: {},
-          header: {}
-        })
+      return YooSplitComponentObject(
+        this.$attrs,
+        ['header']
+      )
     },
     takeListeners () {
-      return this.$listeners
+      return YooSplitComponentObject(
+        this.$listeners,
+        ['header']
+      )
     },
     takeSlotClasses () {
       const BLOCK = this.$yooComponentName
@@ -128,8 +112,7 @@ export default {
   },
   methods: {
     doHeaderSlotName (name) {
-      name = `${name[0].toUpperCase()}${name.slice(1)}`
-      return `header${name}`
+      return `header${YooUpperFirst(name)}`
     }
   }
 }
