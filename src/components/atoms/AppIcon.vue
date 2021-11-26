@@ -4,6 +4,7 @@
     :text="takeIconName | fonticon"
   )
 </template>
+
 <script>
 export default {
   name: 'AppIcon',

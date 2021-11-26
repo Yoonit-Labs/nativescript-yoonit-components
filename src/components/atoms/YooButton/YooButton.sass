@@ -27,13 +27,44 @@
     #{ $root }__icon
       @apply yoo-bg-transparent yoo-z-0
 
+    #{ $root }__icon
+      &--regular
+        @apply yoo-font-awesome-regular
+
+      &--solid
+        @apply yoo-font-awesome-solid
+
+      &--brands
+        @apply yoo-font-awesome-brands
+
+      &--xxs
+        @apply yoo-text-xxs
+
+      &--xs
+        @apply yoo-text-xs
+
+      &--sm
+        @apply yoo-text-sm
+
+      &--md
+        @apply yoo-text-md
+
+      &--lg
+        @apply yoo-text-lg
+
+      &--xl
+        @apply yoo-text-xl
+
+      &--xxl
+        @apply yoo-text-xxl
+
     &#{ $root }--rectangular,
     &#{ $root }--spherical
       @apply yoo-rounded-xxl
 
     // SIZE + FORMAT
     $sizes: "xxs" 6 14 "xs", "xs" 7 20 "xs", "sm" 8 25 "sm", "md" 12 31 "md", "lg" 14 44 "lg", "xl" 17 63 "xl", "xxl" 22 83 "xxl"
-    $child: "text", "icon"
+    $child: "text"
     $tailwindMultiplier: 4
     +YooSizeAndFormat($root, $tailwindMultiplier, $sizes, $child)
 
@@ -47,7 +78,7 @@
     &--clear
       @apply yoo-border-0 yoo-border-transparent yoo-bg-transparent yoo-z-0
 
-    $fills: "primary" "primary" "white" "primary", "secondary" "secondary" "white" "secondary", "danger" "danger" "white" "danger", "grey" "grey" "grey-darkest" "grey-darkest", "disable" "grey-light" "grey" "grey", "light" "white" "black" "white", "dark" "black" "white" "black"
+    $fills: "primary" "primary" "white" "primary", "secondary" "secondary" "white" "secondary", "danger" "danger" "white" "danger", "grey" "grey-light" "grey-darkest" "grey-darkest", "disable" "grey-light" "grey" "grey", "light" "white" "black" "white", "dark" "black" "white" "black"
     $child: "text", "icon"
     +YooFill($root, $fills, $child)
 

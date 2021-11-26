@@ -5,7 +5,7 @@ Page.yoonit-dock-page(
   width="100%"
   height="100%"
 )
-  DockLayout.yoonit-scroll-dock-page__slot(
+  DockLayout.yoonit-dock-page__slot(
     stretchLastChild="false"
     :class="takeSlotClasses"
   )

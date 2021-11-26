@@ -15,5 +15,4 @@
  */
 
 export const PLACEHOLDER = 'placeholder'
-export const REQUIRED = 'required'
 export const VALIDATION = 'validation'

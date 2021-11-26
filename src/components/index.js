@@ -14,28 +14,14 @@
  * Luigui Delyer @ 2021
  */
 
-import {
-  YooSliderPage,
-  YooDockPage,
-  YooButton,
-  YooInputText
-} from './atoms'
-
-import {
-  YooHeader
-} from './molecules'
-
-import {
-  YooScrollPage
-} from './organisms'
+import * as atoms from './atoms'
+import * as molecules from './molecules'
+import * as organisms from './organisms'
 
 const yooComponents = {
-  YooSliderPage,
-  YooDockPage,
-  YooButton,
-  YooInputText,
-  YooHeader,
-  YooScrollPage
+  ...atoms,
+  ...molecules,
+  ...organisms
 }
 
 export default yooComponents

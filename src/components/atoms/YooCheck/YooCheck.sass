@@ -1,0 +1,61 @@
+/**
+ * ██╗   ██╗ ██████╗  ██████╗ ███╗   ██╗██╗████████╗
+ * ╚██╗ ██╔╝██╔═══██╗██╔═══██╗████╗  ██║██║╚══██╔══╝
+ *  ╚████╔╝ ██║   ██║██║   ██║██╔██╗ ██║██║   ██║
+ *   ╚██╔╝  ██║   ██║██║   ██║██║╚██╗██║██║   ██║
+ *    ██║   ╚██████╔╝╚██████╔╝██║ ╚████║██║   ██║
+ *    ╚═╝    ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝   ╚═╝
+ *
+ * https://yoonit.dev - about@yoonit.dev
+ *
+ * NativeScript Yoonit Components
+ * NativeScript VueJS Atomic Design System framework
+ *
+ * Luigui Delyer @ 2021
+ */
+
+@import "../../quarks/YooTextColor"
+@import "../../quarks/YooTextSize"
+@import "../../quarks/YooSize"
+
+.yoonit
+  &-check
+    &__container
+      $root: &
+      @apply yoo-font-mont-semibold yoo-font-semibold yoo-p-0
+
+      $sizes: "xxs" "xxs", "xs" "xs", "sm" "sm", "md" "md", "lg" "lg", "xl" "xl", "xxl" "xxl"
+      +YooTextSize(null, $sizes)
+
+      $tailwindMultiplier: 4
+      $heightSizes: "xxs" 6, "xs" 10, "sm" 13, "md" 15, "lg" 18, "xl" 20, "xxl" 25
+      $heightArea: "h"
+      +YooSize($heightArea, $tailwindMultiplier, $heightSizes)
+
+      $child: ".container__text", ".container__icon"
+      $fills: "primary" "primary", "secondary" "secondary", "danger" "danger", "grey" "grey", "disable" "grey-light", "light" "white", "dark" "black"
+      +YooTextColor($root, $fills, $child)
+
+      .container
+        &__icon,
+        &__text
+          +YooTextSize(null, $sizes)
+
+        &__icon
+          &--solid
+            @apply yoo-font-awesome-solid
+
+          &--regular
+            @apply yoo-font-awesome-regular
+
+          &--top
+            @apply yoo-mb-16
+
+          &--right
+            @apply yoo-ml-16
+
+          &--bottom
+            @apply yoo-mt-16
+
+          &--left
+            @apply yoo-mr-16

@@ -13,6 +13,9 @@ module.exports = {
   theme: {
     colors,
     fontFamily: {
+      'awesome-brands': ['Font Awesome 5 Brands', 'fa-brands-400'],
+      'awesome-solid': ['Font Awesome 5 Free', 'fa-solid-900'],
+      'awesome-regular': ['Font Awesome 5 Free', 'fa-regular-400'],
       'mont-regular': ['Montserrat', 'Montserrat-Regular'],
       'mont-medium': ['Montserrat', 'Montserrat-medium'],
       'mont-semibold': ['Montserrat', 'Montserrat-SemiBold'],

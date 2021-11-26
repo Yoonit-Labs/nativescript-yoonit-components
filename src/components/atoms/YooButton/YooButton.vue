@@ -4,40 +4,18 @@ Button.yoonit-button(
   v-on="takeButtonListeners"
   v-bind="takeButtonAttributes"
 )
-  FormattedString.yoonit-button__content(
-    v-if="takeIconPosition === 'left'"
-  )
+  FormattedString.yoonit-button__content
     Span.yoonit-button__icon(
-      v-show="takeIconDraw"
+      v-show="takeIconContent"
+      :text="takeIconContent"
       :class="takeIconClasses"
-      :text="takeIconDraw"
-    )
-
-    Span.yoonit-button__space(
-      :text="(takeTextContent && takeIconDraw) ? '__' : ''"
+      textAlignment="center"
     )
 
     Span.yoonit-button__text(
       v-show="takeTextContent"
       :text="takeTextContent"
-    )
-
-  FormattedString.yoonit-button__content(
-    v-else-if="takeIconPosition === 'right'"
-  )
-    Span.yoonit-button__text(
-      v-show="takeTextContent"
-      :text="takeTextContent"
-    )
-
-    Span.yoonit-button__space(
-      :text="(takeTextContent && takeIconDraw) ? '__' : ''"
-    )
-
-    Span.yoonit-button__icon(
-      v-show="takeIconDraw"
-      :class="takeIconClasses"
-      :text="takeIconDraw"
+      textAlignment="center"
     )
 </template>
 
@@ -57,7 +35,9 @@ Button.yoonit-button(
  *
  * Luigui Delyer @ 2021
  */
+
 import { GLOBAL_ENUMS } from '../../quarks'
+import { YooFaResolver } from '../../bosons'
 
 export default {
   name: 'YooButton',
@@ -105,6 +85,12 @@ export default {
       validator: value =>
         GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.ICON_SIZE].validator.includes(value)
     },
+    [GLOBAL_ENUMS.ICON_FAMILY]: {
+      type: String,
+      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.ICON_FAMILY].default,
+      validator: value =>
+        GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.ICON_FAMILY].validator.includes(value)
+    },
     [GLOBAL_ENUMS.ANIMATION]: {
       type: String,
       default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.ANIMATION].default,
@@ -141,37 +127,24 @@ export default {
      */
     takeTextContent () {
       return this.$attrs.text
-        ? this.$attrs.text
-        : this[GLOBAL_ENUMS.ICON]
     },
     /**
      * @description Returns the icon class
      */
-    takeIconDraw () {
-      return this[GLOBAL_ENUMS.ICON]
+    takeIconContent () {
+      return YooFaResolver(this[GLOBAL_ENUMS.ICON])
     },
     /**
      * @description Creates the icon class with modifiers
      */
     takeIconClasses () {
       const BLOCK = this.$yooComponentName
-      const element = `${BLOCK}__icon`
-      const classList = []
+      const ELEMENT = `${BLOCK}__icon`
 
-      // set icon type
-      classList
-        .push(
-          this[GLOBAL_ENUMS.ICON]
-        )
-
-      if (this[GLOBAL_ENUMS.ICON_SIZE] && (this[GLOBAL_ENUMS.ICON_SIZE] !== GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.ICON_SIZE].default)) {
-        classList
-          .push(
-            `${element}--${this[GLOBAL_ENUMS.ICON_SIZE]}`
-          )
-      }
-
-      return classList
+      return [
+        `${ELEMENT}--${this[GLOBAL_ENUMS.ICON_SIZE]}`,
+        `${ELEMENT}--${this[GLOBAL_ENUMS.ICON_FAMILY]}`
+      ]
     }
   },
   methods: {}

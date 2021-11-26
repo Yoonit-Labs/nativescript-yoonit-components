@@ -67,7 +67,7 @@ export default {
       required: false,
       default: ''
     },
-    [LOCAL_ENUMS.REQUIRED]: {
+    [GLOBAL_ENUMS.REQUIRED]: {
       type: Boolean,
       required: false,
       default: false
@@ -167,8 +167,9 @@ export default {
   methods: {
     doValidateField (value) {
       const defaultError = value => this.$emit(
-        GLOBAL_ENUMS.OUTPUT,
+        GLOBAL_ENUMS.EVENT_OUTPUT,
         {
+          id: this[GLOBAL_ENUMS.ID],
           isValid: false,
           value: value || null
         }
@@ -185,8 +186,9 @@ export default {
         }
 
         return this.$emit(
-          GLOBAL_ENUMS.OUTPUT,
+          GLOBAL_ENUMS.EVENT_OUTPUT,
           {
+            id: this[GLOBAL_ENUMS.ID],
             isValid: true,
             value
           }

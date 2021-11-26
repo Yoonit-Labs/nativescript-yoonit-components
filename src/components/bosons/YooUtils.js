@@ -1,3 +1,5 @@
+import {GLOBAL_ENUMS} from "@quarks";
+
 const YooSplitWords = text =>
   text
     .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
@@ -40,6 +42,9 @@ const YooUpper = text =>
       YooCase(word, 'toUpperCase')
     )
 
+const YooFaResolver = code =>
+  String.fromCharCode(parseInt(code, 16))
+
 export {
   YooSplitWords,
   YooLower,
@@ -47,5 +52,6 @@ export {
   YooUpperFirst,
   YooLowerFirst,
   YooPascal,
-  YooCamel
+  YooCamel,
+  YooFaResolver
 }

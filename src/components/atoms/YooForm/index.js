@@ -14,38 +14,6 @@
  * Luigui Delyer @ 2021
  */
 
-import YooComponentName from './YooComponentName'
-import YooDimensions from './YooDimensions'
-import YooCipher from './YooCipher'
-import YooPromise from './YooPromise'
-import YooHTTP from './YooHTTP'
-import YooGQLRequester from './YooGQLRequester'
-import YooSplitComponentObject from './YooSplitComponentObject'
-import {
-  YooSplitWords,
-  YooLower,
-  YooUpper,
-  YooUpperFirst,
-  YooLowerFirst,
-  YooPascal,
-  YooCamel,
-  YooFaResolver
-} from './YooUtils'
+import YooForm from './YooForm'
 
-export {
-  YooComponentName,
-  YooDimensions,
-  YooCipher,
-  YooPromise,
-  YooHTTP,
-  YooGQLRequester,
-  YooSplitComponentObject,
-  YooSplitWords,
-  YooLower,
-  YooUpper,
-  YooUpperFirst,
-  YooLowerFirst,
-  YooPascal,
-  YooCamel,
-  YooFaResolver
-}
+export default YooForm

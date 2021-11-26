@@ -1,26 +1,42 @@
 <template lang="pug">
-FlexboxLayout.yoonit-header(
+GridLayout.yoonit-header(
   :class="takeRootClasses"
-  flexDirection="row"
-  justifyContent="space-between"
+  rows="*"
+  columns="1*, 4*, 1*"
 )
-  slot(
-    :name="LOCAL_ENUMS.SLOT_LEFT"
-    @tap="onSlotTap(LOCAL_ENUMS.SLOT_LEFT)"
+  FlexboxLayout(
+    row="0"
+    col="0"
+    flexDirection="row"
+    justifyContent="center"
   )
-    Label(:text="LOCAL_ENUMS.SLOT_LEFT")
+    slot(
+      :name="LOCAL_ENUMS.SLOT_LEFT"
+      @tap="onSlotTap(LOCAL_ENUMS.SLOT_LEFT)"
+    )
 
-  slot(
-    :name="LOCAL_ENUMS.SLOT_CENTER"
-    @tap="onSlotTap(LOCAL_ENUMS.SLOT_CENTER)"
+  FlexboxLayout(
+    row="0"
+    col="1"
+    flexDirection="row"
+    justifyContent="center"
   )
-    Label(:text="LOCAL_ENUMS.SLOT_CENTER")
+    slot(
+      :name="LOCAL_ENUMS.SLOT_CENTER"
+      @tap="onSlotTap(LOCAL_ENUMS.SLOT_CENTER)"
+    )
 
-  slot(
-    :name="LOCAL_ENUMS.SLOT_RIGHT"
-    @tap="onSlotTap(LOCAL_ENUMS.SLOT_RIGHT)"
+  FlexboxLayout(
+    row="0"
+    col="2"
+    flexDirection="row"
+    alignItems="center"
+    justifyContent="center"
   )
-    Label(:text="LOCAL_ENUMS.SLOT_RIGHT")
+    slot(
+      :name="LOCAL_ENUMS.SLOT_RIGHT"
+      @tap="onSlotTap(LOCAL_ENUMS.SLOT_RIGHT)"
+    )
 </template>
 
 <script>

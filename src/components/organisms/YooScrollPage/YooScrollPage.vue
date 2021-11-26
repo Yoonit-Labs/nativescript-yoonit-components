@@ -32,10 +32,15 @@ Page.yoonit-scroll-page(
       )
 
     ScrollView.container__slot(
-      :class="takeSlotClasses"
+      v-bind="takeAttributes.view"
       :flexGrow="1"
     )
-    //  slot
+      StackLayout.slot__content(
+        :class="takeSlotClasses"
+      )
+        slot(
+          :name="LOCAL_ENUMS.SLOT_CONTENT"
+        )
 </template>
 
 <script>
@@ -95,7 +100,10 @@ export default {
     takeAttributes () {
       return YooSplitComponentObject(
         this.$attrs,
-        ['header']
+        [
+          'header',
+          'view'
+        ]
       )
     },
     takeListeners () {
@@ -105,9 +113,9 @@ export default {
       )
     },
     takeSlotClasses () {
-      const BLOCK = this.$yooComponentName
+      const BLOCK = 'slot'
 
-      return `${BLOCK}__slot--${this[GLOBAL_ENUMS.SIZE]}`
+      return `${BLOCK}__content--${this[GLOBAL_ENUMS.SIZE]}`
     }
   },
   methods: {

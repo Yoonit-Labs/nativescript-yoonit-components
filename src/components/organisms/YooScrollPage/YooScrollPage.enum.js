@@ -15,6 +15,6 @@
  */
 
 export const HEADER = 'header'
-export const CONTENT = 'content'
+export const SLOT_CONTENT = 'content'
 
 export const OPTIONS = {}

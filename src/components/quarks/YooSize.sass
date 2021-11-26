@@ -17,4 +17,7 @@
 =YooSize($area, $multiplier, $sizes)
   @each $size, $value in $sizes
     &--#{ $size }
+      @if $area == h or $area == w
+        @apply yoo-min-#{ $area }-#{ $value * $multiplier } yoo-#{ $area }-#{ $value * $multiplier } yoo-max-#{ $area }-#{ $value * $multiplier }
+      @else
       @apply yoo-#{ $area }-#{ $value * $multiplier }

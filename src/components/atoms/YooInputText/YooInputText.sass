@@ -22,12 +22,9 @@
     $root: &
     @apply yoo-font-mont-regular yoo-font-normal yoo-bg-transparent
 
-    #{ $root }__feedback
-      @apply yoo-font-mont-semibold yoo-font-semibold
-
     #{ $root }__placeholder,
     #{ $root }__feedback
-      @apply yoo-bg-transparent yoo-z-0
+      @apply yoo-bg-transparent yoo-z-0 yoo-font-mont-semibold yoo-font-semibold
 
     // SIZE + FORMAT
     #{ $root }__field
@@ -65,6 +62,6 @@
     &--clear
       @apply yoo-border-0 yoo-border-transparent yoo-bg-transparent yoo-z-0
 
-    $fills: "primary" "primary" "white" "primary", "secondary" "secondary" "white" "secondary", "danger" "danger" "white" "danger", "grey" "grey-dark" "grey-dark" "grey-dark", "disable" "grey-light" "grey" "grey", "light" "white" "black" "white", "dark" "black" "white" "black"
+    $fills: "primary" "primary" "white" "primary", "secondary" "secondary" "white" "secondary", "danger" "danger" "white" "danger", "grey" "grey-light" "grey-dark" "grey-dark", "disable" "grey-light" "grey" "grey", "light" "white" "black" "white", "dark" "black" "white" "black"
     $fillsChild: "placeholder", "field", "feedback"
     +YooFill($root, $fills, $fillsChild)

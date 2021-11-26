@@ -18,17 +18,27 @@ export const SIZE = 'size'
 export const FILL = 'fill'
 export const ICON = 'icon'
 export const ICON_POSITION = 'iconPosition'
+export const ICON_FAMILY = 'iconFamily'
 export const ICON_SIZE = 'iconSize'
+export const TEXT = 'text'
 export const TEXT_COLOR = 'textColor'
+export const REQUIRED = 'required'
 export const ANIMATION = 'animation'
 export const EVENT_LOADED = 'loaded'
 export const EVENT_CHANGE = 'change'
+export const EVENT_OUTPUT = 'output'
+export const EVENT_VALIDATED = 'validated'
 export const VARIATION = 'variation'
 export const FORMAT = 'format'
 export const ID = 'id'
 export const FEEDBACK = 'feedback'
 export const INPUT = 'input'
-export const OUTPUT = 'output'
+
+const ICON_FAMILIES = [
+  'regular',
+  'solid',
+  'brands'
+]
 
 const VARIATIONS = [
   'filled',
@@ -68,10 +78,10 @@ const COLOR_MODES = [
 ]
 
 const POSITIONS = [
-  'left',
+  'top',
   'right',
-  'center',
-  'bottom'
+  'bottom',
+  'left'
 ]
 
 const ANIMATIONS = [
@@ -102,8 +112,12 @@ export const OPTIONS = {
     validator: POSITIONS
   },
   [ICON_SIZE]: {
-    default: SIZES[1],
+    default: SIZES[4],
     validator: SIZES
+  },
+  [ICON_FAMILY]: {
+    default: ICON_FAMILIES[0],
+    validator: ICON_FAMILIES
   },
   [ANIMATION]: {
     default: ANIMATIONS[0],
