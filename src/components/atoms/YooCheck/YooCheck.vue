@@ -106,9 +106,16 @@ export default {
       return [
         `${BLOCK}__${ELEMENT}--${this[GLOBAL_ENUMS.SIZE]}`,
         {
-          true: `${BLOCK}__${ELEMENT}--fill-${this[GLOBAL_ENUMS.FILL]}`,
-          false: `${BLOCK}__${ELEMENT}--fill-grey`
-        }[this.checked]
+          true: {
+            true: `${BLOCK}__${ELEMENT}--fill-${this[GLOBAL_ENUMS.FILL]}`,
+            false: `${BLOCK}__${ELEMENT}--fill-grey`
+          },
+          false: {
+            true: `${BLOCK}__${ELEMENT}--fill-disable`,
+            false: `${BLOCK}__${ELEMENT}--fill-disable`
+          },
+          undefined: ''
+        }[this.$attrs.isEnabled][this.checked]
       ]
     },
     takeGridDistribution () {
@@ -206,6 +213,10 @@ export default {
       this.checked = this[GLOBAL_ENUMS.INPUT]
     },
     onRootTap () {
+      if (!this.$attrs.isEnabled) {
+        return
+      }
+
       this.checked = !this.checked
 
       return this.$emit(
@@ -219,6 +230,10 @@ export default {
   },
   watch: {
     [GLOBAL_ENUMS.INPUT] (newValue, oldValue) {
+      if (!this.$attrs.isEnabled) {
+        return
+      }
+
       if (newValue === oldValue) {
         return
       }

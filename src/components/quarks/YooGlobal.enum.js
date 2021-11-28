@@ -33,6 +33,7 @@ export const FORMAT = 'format'
 export const ID = 'id'
 export const FEEDBACK = 'feedback'
 export const INPUT = 'input'
+export const ITEMS = 'items'
 
 const ICON_FAMILIES = [
   'regular',
@@ -108,7 +109,7 @@ export const OPTIONS = {
     validator: COLOR_MODES
   },
   [ICON_POSITION]: {
-    default: POSITIONS[0],
+    default: POSITIONS[3],
     validator: POSITIONS
   },
   [ICON_SIZE]: {

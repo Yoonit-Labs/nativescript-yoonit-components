@@ -115,8 +115,11 @@ export default {
 
       return [
         `${BLOCK}--${this[GLOBAL_ENUMS.SIZE]}`,
-        `${BLOCK}--fill-${this[GLOBAL_ENUMS.FILL]}`,
-        `${BLOCK}--${this[GLOBAL_ENUMS.VARIATION]}`
+        `${BLOCK}--${this[GLOBAL_ENUMS.VARIATION]}`,
+        {
+          true: `${BLOCK}--fill-${this[GLOBAL_ENUMS.FILL]}`,
+          false: `${BLOCK}--fill-disable`
+        }[this.$attrs.isEnabled]
       ]
     },
     takeFormatClass () {

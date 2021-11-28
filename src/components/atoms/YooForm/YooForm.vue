@@ -1,11 +1,27 @@
 <template lang="pug">
 StackLayout(
-  @loaded="doStackLoaded"
+  @loaded="onRootLoaded"
 )
   slot
 </template>
 
 <script>
+/**
+ * ██╗   ██╗ ██████╗  ██████╗ ███╗   ██╗██╗████████╗
+ * ╚██╗ ██╔╝██╔═══██╗██╔═══██╗████╗  ██║██║╚══██╔══╝
+ *  ╚████╔╝ ██║   ██║██║   ██║██╔██╗ ██║██║   ██║
+ *   ╚██╔╝  ██║   ██║██║   ██║██║╚██╗██║██║   ██║
+ *    ██║   ╚██████╔╝╚██████╔╝██║ ╚████║██║   ██║
+ *    ╚═╝    ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝   ╚═╝
+ *
+ * https://yoonit.dev - about@yoonit.dev
+ *
+ * NativeScript Yoonit Components
+ * NativeScript VueJS Atomic Design System framework
+ *
+ * Luigui Delyer @ 2021
+ */
+
 import { GLOBAL_ENUMS } from '../../quarks'
 
 export default {
@@ -17,9 +33,9 @@ export default {
     slots: {}
   }),
   methods: {
-    doStackLoaded () {
+    onRootLoaded () {
       this.slots = this.doExtractSlotIds(this.$slots.default)
-      this.$slots.default = this.doListenSlotChild(this.$slots.default)
+      this.$slots.default = this.doChangeSlots(this.$slots.default)
     },
     doExtractSlotIds (components) {
       return Object
@@ -31,7 +47,7 @@ export default {
           }), {}
         )
     },
-    doListenSlotChild (components) {
+    doChangeSlots (components) {
       return Object
         .values(components)
         .map(component => {
@@ -40,6 +56,16 @@ export default {
             required
           } = component.componentOptions.propsData
           const instance = component.componentInstance
+
+          instance.$attrs = {
+            ...instance.$attrs,
+            isEnabled: this.$attrs.isEnabled
+          }
+
+          component.componentOptions.propsData = {
+            ...component.componentOptions.propsData,
+            isEnabled: this.$attrs.isEnabled
+          }
 
           instance.$on(
             GLOBAL_ENUMS.EVENT_OUTPUT,
