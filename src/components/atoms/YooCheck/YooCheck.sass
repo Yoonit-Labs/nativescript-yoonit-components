@@ -17,6 +17,7 @@
 @import "../../quarks/YooTextColor"
 @import "../../quarks/YooTextSize"
 @import "../../quarks/YooSize"
+@import "../../quarks/YooSizeByArea"
 
 .yoonit
   &-check
@@ -25,22 +26,17 @@
       @apply yoo-font-mont-semibold yoo-font-semibold yoo-p-0
 
       $sizes: "xxs" "xxs", "xs" "xs", "sm" "sm", "md" "md", "lg" "lg", "xl" "xl", "xxl" "xxl"
-      +YooTextSize(null, $sizes)
-
       $tailwindMultiplier: 4
-      $heightSizes: "xxs" 6, "xs" 10, "sm" 13, "md" 15, "lg" 18, "xl" 20, "xxl" 25
+      $heightSizes: "xxs" 4, "xs" 6, "sm" 8, "md" 10, "lg" 18, "xl" 20, "xxl" 25
       $heightArea: "h"
       +YooSize($heightArea, $tailwindMultiplier, $heightSizes)
+      +YooTextSize($root, $sizes)
 
       $child: ".container__text", ".container__icon"
       $fills: "primary" "primary", "secondary" "secondary", "danger" "danger", "grey" "grey", "disable" "grey-light", "light" "white", "dark" "black"
       +YooTextColor($root, $fills, $child)
 
       .container
-        &__icon,
-        &__text
-          +YooTextSize(null, $sizes)
-
         &__icon
           &--solid
             @apply yoo-font-awesome-solid
@@ -48,14 +44,20 @@
           &--regular
             @apply yoo-font-awesome-regular
 
-          &--top
-            @apply yoo-mb-16
+          $marginSizes: "xxs" 0, "xs" 1, "sm" 2, "md" 3, "lg" 4, "xl" 5, "xxl" 6
+          @each $size, $value in $marginSizes
+            &--top
+              &.container__icon--#{ $size }
+                +YooSizeByArea("mb", $tailwindMultiplier, $value)
 
-          &--right
-            @apply yoo-ml-16
+            &--right
+              &.container__icon--#{ $size }
+                +YooSizeByArea("ml", $tailwindMultiplier, $value)
 
-          &--bottom
-            @apply yoo-mt-16
+            &--bottom
+              &.container__icon--#{ $size }
+                +YooSizeByArea("mt", $tailwindMultiplier, $value)
 
-          &--left
-            @apply yoo-mr-16
+            &--left
+              &.container__icon--#{ $size }
+                +YooSizeByArea("mr", $tailwindMultiplier, $value)

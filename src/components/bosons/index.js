@@ -15,12 +15,15 @@
  */
 
 import YooComponentName from './YooComponentName'
+import YooIsEnabled from './YooIsEnabled'
 import YooDimensions from './YooDimensions'
 import YooCipher from './YooCipher'
 import YooPromise from './YooPromise'
 import YooHTTP from './YooHTTP'
 import YooGQLRequester from './YooGQLRequester'
 import YooSplitComponentObject from './YooSplitComponentObject'
+import YooLoadingPlugin, { YooLoading } from './YooLoading'
+import YooDialogPlugin, { YooDialog } from './YooDialog'
 import {
   YooSplitWords,
   YooLower,
@@ -29,17 +32,24 @@ import {
   YooLowerFirst,
   YooPascal,
   YooCamel,
-  YooFaResolver
+  YooFaResolver,
+  YooRecursiveSearch
 } from './YooUtils'
 
 export {
   YooComponentName,
+  YooIsEnabled,
   YooDimensions,
   YooCipher,
   YooPromise,
   YooHTTP,
   YooGQLRequester,
   YooSplitComponentObject,
+  YooLoading,
+  YooLoadingPlugin,
+  YooDialog,
+  YooDialogPlugin,
+  YooRecursiveSearch,
   YooSplitWords,
   YooLower,
   YooUpper,

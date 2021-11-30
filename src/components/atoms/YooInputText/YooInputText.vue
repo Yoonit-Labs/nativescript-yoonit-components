@@ -119,7 +119,7 @@ export default {
         {
           true: `${BLOCK}--fill-${this[GLOBAL_ENUMS.FILL]}`,
           false: `${BLOCK}--fill-disable`
-        }[this.$attrs.isEnabled]
+        }[this.$yooIsEnabled]
       ]
     },
     takeFormatClass () {

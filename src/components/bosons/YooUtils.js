@@ -1,4 +1,18 @@
-import {GLOBAL_ENUMS} from "@quarks";
+/**
+ * ██╗   ██╗ ██████╗  ██████╗ ███╗   ██╗██╗████████╗
+ * ╚██╗ ██╔╝██╔═══██╗██╔═══██╗████╗  ██║██║╚══██╔══╝
+ *  ╚████╔╝ ██║   ██║██║   ██║██╔██╗ ██║██║   ██║
+ *   ╚██╔╝  ██║   ██║██║   ██║██║╚██╗██║██║   ██║
+ *    ██║   ╚██████╔╝╚██████╔╝██║ ╚████║██║   ██║
+ *    ╚═╝    ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝   ╚═╝
+ *
+ * https://yoonit.dev - about@yoonit.dev
+ *
+ * NativeScript Yoonit Components
+ * NativeScript VueJS Atomic Design System framework
+ *
+ * Luigui Delyer @ 2021
+ */
 
 const YooSplitWords = text =>
   text
@@ -45,6 +59,31 @@ const YooUpper = text =>
 const YooFaResolver = code =>
   String.fromCharCode(parseInt(code, 16))
 
+const YooRecursiveSearch = ({
+  input = {},
+  key = ''
+}) => {
+  let value
+
+  Object
+    .keys(input)
+    .some((_key) => {
+      if (_key === key) {
+        value = input[_key]
+        return true
+      }
+
+      if (input[_key] &&
+          typeof input[_key] === 'object') {
+        value = YooRecursiveSearch({ input: input[_key], key })
+
+        return value !== undefined
+      }
+    })
+
+  return value
+}
+
 export {
   YooSplitWords,
   YooLower,
@@ -53,5 +92,6 @@ export {
   YooLowerFirst,
   YooPascal,
   YooCamel,
-  YooFaResolver
+  YooFaResolver,
+  YooRecursiveSearch
 }

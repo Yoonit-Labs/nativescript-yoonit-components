@@ -14,46 +14,34 @@
  * Luigui Delyer @ 2021
  */
 
-import {
-  YooSplitWords,
-  YooLower,
-  YooCamel
-} from './YooUtils'
+import { Dialogs } from '@nativescript/core'
 
-const YooSplitComponentObject = (
-  object = {},
-  components = []
-) => {
-  return Object
-    .entries(object)
-    .reduce((acc, [key, value]) => {
-      const attribute = YooLower(YooSplitWords(key))
-      let component = ''
-
-      if (attribute.length > 1) {
-        component = attribute.shift()
-
-        if (components.includes(component)) {
-          key = YooCamel(attribute).join('')
-
-          return {
-            ...acc,
-            [component]: {
-              ...acc[component],
-              [key]: value
-            }
-          }
-        }
-      }
-
-      return {
-        ...acc,
-        root: {
-          ...acc.root,
-          [key]: value
-        }
-      }
-    }, {})
+const YooDialog = {
+  alert: ({
+    title = '',
+    message = '',
+    okButtonText = 'OK',
+    cancelable = true
+  }) => {
+    return Dialogs
+      .alert({
+        title,
+        message,
+        okButtonText,
+        cancelable
+      })
+  }
 }
 
-export default YooSplitComponentObject
+export default {
+  install: Vue => {
+    Vue.prototype.$yoo = {
+      ...Vue.prototype.$yoo,
+      dialog: YooDialog
+    }
+  }
+}
+
+export {
+  YooDialog
+}

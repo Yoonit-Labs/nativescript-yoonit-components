@@ -115,7 +115,7 @@ export default {
             false: `${BLOCK}__${ELEMENT}--fill-disable`
           },
           undefined: ''
-        }[this.$attrs.isEnabled][this.checked]
+        }[this.$yooIsEnabled][this.checked]
       ]
     },
     takeGridDistribution () {
@@ -211,14 +211,9 @@ export default {
   methods: {
     onRootLoaded () {
       this.checked = this[GLOBAL_ENUMS.INPUT]
+      this.doEmitChecked()
     },
-    onRootTap () {
-      if (!this.$attrs.isEnabled) {
-        return
-      }
-
-      this.checked = !this.checked
-
+    doEmitChecked () {
       return this.$emit(
         GLOBAL_ENUMS.EVENT_OUTPUT,
         {
@@ -226,11 +221,20 @@ export default {
           value: this.checked
         }
       )
+    },
+    onRootTap () {
+      if (!this.$yooIsEnabled) {
+        return
+      }
+
+      this.checked = !this.checked
+
+      this.doEmitChecked()
     }
   },
   watch: {
     [GLOBAL_ENUMS.INPUT] (newValue, oldValue) {
-      if (!this.$attrs.isEnabled) {
+      if (!this.$yooIsEnabled) {
         return
       }
 

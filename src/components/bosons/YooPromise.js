@@ -28,32 +28,22 @@ const YooPromise = promise => {
   try {
     return promise
       .then(
-        data =>
-          (
-            [
-              data,
-              undefined
-            ]
-          )
+        data => [
+          data,
+          undefined
+        ]
       )
       .catch(
-        error =>
-          Promise
-            .resolve(
-              [
-                undefined,
-                error
-              ]
-            )
-      )
-  } catch (error) {
-    return Promise
-      .resolve(
-        [
+        error => [
           undefined,
           error
         ]
       )
+  } catch (error) {
+    return [
+      undefined,
+      error
+    ]
   }
 }
 

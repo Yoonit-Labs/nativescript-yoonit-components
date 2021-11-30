@@ -57,16 +57,6 @@ export default {
           } = component.componentOptions.propsData
           const instance = component.componentInstance
 
-          instance.$attrs = {
-            ...instance.$attrs,
-            isEnabled: this.$attrs.isEnabled
-          }
-
-          component.componentOptions.propsData = {
-            ...component.componentOptions.propsData,
-            isEnabled: this.$attrs.isEnabled
-          }
-
           instance.$on(
             GLOBAL_ENUMS.EVENT_OUTPUT,
             $event =>

@@ -17,17 +17,25 @@
 import yooComponents from './components'
 import {
   YooComponentName,
+  YooIsEnabled,
   YooDimensions,
   YooCipher,
   YooPromise,
   YooHTTP,
-  YooGQLRequester
+  YooGQLRequester,
+  YooLoading,
+  YooLoadingPlugin,
+  YooDialog,
+  YooDialogPlugin
 } from './components/bosons'
 
 const $yoo = {
   install: Vue => {
     Vue.mixin(YooComponentName)
+    Vue.mixin(YooIsEnabled)
     Vue.use(YooDimensions)
+    Vue.use(YooLoadingPlugin)
+    Vue.use(YooDialogPlugin)
     // Auto-register lib components
     Object
       .entries(yooComponents)
@@ -43,5 +51,7 @@ export {
   YooCipher,
   YooPromise,
   YooHTTP,
-  YooGQLRequester
+  YooGQLRequester,
+  YooLoading,
+  YooDialog
 }

@@ -20,13 +20,14 @@ import {
 
 import {
   YooHTTP,
-  YooPromise
+  YooPromise,
+  YooRecursiveSearch
 } from './index'
 
 const YooGQLRequester = async ({
   url = '',
   query = '',
-  headers = {},
+  headers = {}
 }) => {
   if (!url ||
       url.constructor !== String ||
@@ -47,7 +48,7 @@ const YooGQLRequester = async ({
   const [
     {
       content,
-      statusCode: httpStatus
+      statusCode: http
     },
     error
   ] = await YooPromise(
@@ -58,13 +59,30 @@ const YooGQLRequester = async ({
     })
   )
 
-  if (error) {
-    return error
+  if (error !== undefined) {
+    throw error
+  }
+
+  const data = JSON.parse(content)
+
+  const fakeStatus = YooRecursiveSearch({
+    input: data,
+    key: 'status'
+  })
+
+  if (fakeStatus < 200 ||
+      fakeStatus > 299) {
+    const fakeMessage = YooRecursiveSearch({
+      input: data,
+      key: 'message'
+    })
+
+    throw new Error(fakeMessage)
   }
 
   return {
-    content,
-    httpStatus
+    ...data,
+    http
   }
 }
 

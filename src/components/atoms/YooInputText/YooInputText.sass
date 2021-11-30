@@ -20,7 +20,7 @@
 .yoonit
   &-input-text
     $root: &
-    @apply yoo-font-mont-regular yoo-font-normal yoo-bg-transparent
+    @apply yoo-font-mont-regular yoo-font-normal yoo-bg-transparent yoo-p-0
 
     #{ $root }__placeholder,
     #{ $root }__feedback
@@ -28,8 +28,6 @@
 
     // SIZE + FORMAT
     #{ $root }__field
-      @apply yoo-py-0
-
       &#{ $root }--rectangular,
       &#{ $root }--spherical
         @apply yoo-rounded-xxl

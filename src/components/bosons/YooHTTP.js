@@ -54,8 +54,8 @@ const YooHTTP = async ({
       )
   )
 
-  if (error) {
-    return error
+  if (error !== undefined) {
+    throw error
   }
 
   return success

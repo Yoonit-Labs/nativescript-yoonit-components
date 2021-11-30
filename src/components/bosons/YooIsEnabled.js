@@ -14,46 +14,26 @@
  * Luigui Delyer @ 2021
  */
 
-import {
-  YooSplitWords,
-  YooLower,
-  YooCamel
-} from './YooUtils'
+export default {
+  computed: {
+    $yooIsEnabled () {
+      const localAttr = this.$attrs.isEnabled
+      const localProp = this.$props.isEnabled
+      const parent = this.$parent.$attrs.isEnabled
 
-const YooSplitComponentObject = (
-  object = {},
-  components = []
-) => {
-  return Object
-    .entries(object)
-    .reduce((acc, [key, value]) => {
-      const attribute = YooLower(YooSplitWords(key))
-      let component = ''
-
-      if (attribute.length > 1) {
-        component = attribute.shift()
-
-        if (components.includes(component)) {
-          key = YooCamel(attribute).join('')
-
-          return {
-            ...acc,
-            [component]: {
-              ...acc[component],
-              [key]: value
-            }
-          }
-        }
+      if (localAttr !== undefined) {
+        return localAttr
       }
 
-      return {
-        ...acc,
-        root: {
-          ...acc.root,
-          [key]: value
-        }
+      if (localProp !== undefined) {
+        return localProp
       }
-    }, {})
+
+      if (parent !== undefined) {
+        return parent
+      }
+
+      return true
+    }
+  }
 }
-
-export default YooSplitComponentObject

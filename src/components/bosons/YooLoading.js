@@ -14,45 +14,56 @@
  * Luigui Delyer @ 2021
  */
 
-import {
-  Screen
-} from '@nativescript/core'
+import { LoadingIndicator } from '@nstudio/nativescript-loading-indicator'
 
-const dimensions = nativeView => {
-  if (!nativeView) {
-    return
-  }
+const loadingIndicator = new LoadingIndicator()
 
-  const {
-    width,
-    height
-  } = nativeView.getActualSize()
-  const {
-    widthDIPs,
-    heightDIPs
-  } = Screen.mainScreen
+const YooLoading = {
+  _visible: false,
+  _timeout: null,
 
-  const viewSize = {
-    width: Number(width.toFixed(2)),
-    height: Number(height.toFixed(2)),
-    center: {
-      x: Number(width.toFixed(2)) / 2,
-      y: Number(height.toFixed(2)) / 2
+  show (options) {
+    if (this._visible) {
+      return
     }
-  }
 
-  const screenSize = {
-    width: Number(widthDIPs.toFixed(2)),
-    height: Number(heightDIPs.toFixed(2)),
-    center: {
-      x: Number(widthDIPs.toFixed(2)) / 2,
-      y: Number(heightDIPs.toFixed(2)) / 2
+    this._visible = true
+
+    this._timeout = setTimeout(
+      () => this.hide(),
+      5000
+    )
+
+    return loadingIndicator
+      .show({
+        userInteractionEnabled: false,
+        dimBackground: true,
+        hideBezel: true,
+        color: '#FFF',
+        margin: 24,
+        mode: 0,
+        ...options
+      })
+  },
+
+  delay (delay = 0) {
+    if (delay > 0) {
+      return new Promise(resolve => {
+        return setTimeout(
+          () => {
+            this.hide()
+            resolve()
+          },
+          delay
+        )
+      })
     }
-  }
+  },
 
-  return {
-    viewSize,
-    screenSize
+  hide () {
+    this._visible = false
+    clearTimeout(this._timeout)
+    return loadingIndicator.hide()
   }
 }
 
@@ -60,7 +71,11 @@ export default {
   install: Vue => {
     Vue.prototype.$yoo = {
       ...Vue.prototype.$yoo,
-      dimensions
+      loading: YooLoading
     }
   }
+}
+
+export {
+  YooLoading
 }

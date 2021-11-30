@@ -25,6 +25,12 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'no-debugger': 'off',
+    'prefer-promise-reject-errors': [
+      'error',
+      {
+        'allowEmptyReject': true
+      }
+    ],
     'vue/require-valid-default-prop': 'off',
     'vue/require-default-prop': 'off',
     'vue/valid-template-root': 'off',
