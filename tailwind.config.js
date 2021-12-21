@@ -5,10 +5,11 @@ const spacingPercentage = require('./src/components/quarks/Tokens/SpacingPercent
 
 module.exports = {
   prefix: 'yoo-',
-  purge: {
-    enabled: false
-  },
-  important: true,
+  mode: 'jit',
+  purge: [
+    './**/**/*.{css,scss,sass,vue,pug,ts}'
+  ],
+  important: false,
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     colors,

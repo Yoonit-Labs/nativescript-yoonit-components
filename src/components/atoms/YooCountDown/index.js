@@ -14,20 +14,6 @@
  * Luigui Delyer @ 2021
  */
 
-import YooSliderPage from './YooSliderPage'
-import YooDockPage from './YooDockPage'
 import YooCountDown from './YooCountDown'
-import YooButton from './YooButton'
-import YooInputText from './YooInputText'
-import YooForm from './YooForm'
-import YooCheck from './YooCheck'
 
-export {
-  YooSliderPage,
-  YooDockPage,
-  YooCountDown,
-  YooButton,
-  YooInputText,
-  YooForm,
-  YooCheck
-}
+export default YooCountDown

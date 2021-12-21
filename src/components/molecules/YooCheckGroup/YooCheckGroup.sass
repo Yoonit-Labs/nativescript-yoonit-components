@@ -29,9 +29,13 @@
       $sizes: "xxs" "xs", "xs" "xs", "sm" "sm", "md" "sm", "lg" "md", "xl" "lg", "xxl" "xl"
       +YooTextSize($root, $sizes)
 
-      $paddingSizes: "xxs" 0, "xs" 1, "sm" 2, "md" 3, "lg" 4, "xl" 5, "xxl" 6
-      $paddingArea: "p"
-      +YooSize($paddingArea, $tailwindMultiplier, $paddingSizes)
+      $paddingXSizes: "xxs" 0, "xs" 2, "sm" 3, "md" 4, "lg" 5, "xl" 6, "xxl" 7
+      $paddingXArea: "px"
+      +YooSize($paddingXArea, $tailwindMultiplier, $paddingXSizes)
+
+      $paddingTSizes: "xxs" 0, "xs" 1, "sm" 2, "md" 3, "lg" 4, "xl" 5, "xxl" 6
+      $paddingTArea: "pt"
+      +YooSize($paddingTArea, $tailwindMultiplier, $paddingTSizes)
 
       // FILL + VARIATION
       &--filled
@@ -71,7 +75,6 @@
 
                 &--error
                   @apply yoo-text-danger
-
 
       .container
         &__text,

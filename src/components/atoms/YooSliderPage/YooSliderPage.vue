@@ -102,6 +102,15 @@ export default {
         close
       } = this.$refs[LOCAL_ENUMS.DRAWER_REF]
 
+      Vue.prototype.$yoo = {
+        ...Vue.prototype.$yoo,
+        [LOCAL_ENUMS.DRAWER_REF]: {
+          open,
+          close,
+          toggle
+        }
+      }
+
       this.$emit(GLOBAL_ENUMS.EVENT_LOADED, {
         [LOCAL_ENUMS.DRAWER_REF]: {
           open,

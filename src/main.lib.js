@@ -18,6 +18,7 @@ import yooComponents from './components'
 import {
   YooComponentName,
   YooIsEnabled,
+  YooPreventBack,
   YooDimensions,
   YooCipher,
   YooPromise,
@@ -26,13 +27,15 @@ import {
   YooLoading,
   YooLoadingPlugin,
   YooDialog,
-  YooDialogPlugin
+  YooDialogPlugin,
+  YooFaResolver
 } from './components/bosons'
 
 const $yoo = {
   install: Vue => {
     Vue.mixin(YooComponentName)
     Vue.mixin(YooIsEnabled)
+    Vue.mixin(YooPreventBack)
     Vue.use(YooDimensions)
     Vue.use(YooLoadingPlugin)
     Vue.use(YooDialogPlugin)
@@ -53,5 +56,6 @@ export {
   YooHTTP,
   YooGQLRequester,
   YooLoading,
-  YooDialog
+  YooDialog,
+  YooFaResolver
 }

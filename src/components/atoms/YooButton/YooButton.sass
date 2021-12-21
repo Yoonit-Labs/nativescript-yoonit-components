@@ -17,56 +17,12 @@
 @import "../../quarks/YooAnimationPulse"
 @import "../../quarks/YooFill"
 @import "../../quarks/YooSizeAndFormat"
+@import "../../quarks/YooSize"
 
-.yoonit
-  &-button
+.yoonit-button
+  &__container
     $root: &
-    @apply yoo-font-mont-semibold yoo-font-semibold yoo-p-0
-
-    #{ $root }__text,
-    #{ $root }__icon
-      @apply yoo-bg-transparent yoo-z-0
-
-    #{ $root }__icon
-      &--regular
-        @apply yoo-font-awesome-regular
-
-      &--solid
-        @apply yoo-font-awesome-solid
-
-      &--brands
-        @apply yoo-font-awesome-brands
-
-      &--xxs
-        @apply yoo-text-xxs
-
-      &--xs
-        @apply yoo-text-xs
-
-      &--sm
-        @apply yoo-text-sm
-
-      &--md
-        @apply yoo-text-md
-
-      &--lg
-        @apply yoo-text-lg
-
-      &--xl
-        @apply yoo-text-xl
-
-      &--xxl
-        @apply yoo-text-xxl
-
-    &#{ $root }--rectangular,
-    &#{ $root }--spherical
-      @apply yoo-rounded-xxl
-
-    // SIZE + FORMAT
-    $sizes: "xxs" 6 14 "xs", "xs" 7 20 "xs", "sm" 8 25 "sm", "md" 12 31 "md", "lg" 14 44 "lg", "xl" 17 63 "xl", "xxl" 22 83 "xxl"
-    $child: "text"
-    $tailwindMultiplier: 4
-    +YooSizeAndFormat($root, $tailwindMultiplier, $sizes, $child)
+    @apply yoo-p-0 yoo-w-xxl yoo-h-xxl
 
     // FILL + VARIATION
     &--filled
@@ -79,9 +35,106 @@
       @apply yoo-border-0 yoo-border-transparent yoo-bg-transparent yoo-z-0
 
     $fills: "primary" "primary" "white" "primary", "secondary" "secondary" "white" "secondary", "danger" "danger" "white" "danger", "grey" "grey-light" "grey-darkest" "grey-darkest", "disable" "grey-lightest" "grey" "grey", "light" "white" "black" "white", "dark" "black" "white" "black"
-    $child: "text", "icon"
-    +YooFill($root, $fills, $child)
+    $fillChild: ".content__icon", ".content__text"
+    @each $fillName, $fillColor, $textColor, $clearTextColor in $fills
+      &--filled
+        &#{ $root }--fill-#{ $fillName }
+          @apply yoo-bg-#{ $fillColor }
+
+          @each $name in $fillChild
+            #{ $name }
+              @apply yoo-text-#{ $textColor }
+
+              &--error
+                @apply yoo-text-danger
+
+      &--outline,
+      &--filled
+        &#{ $root }--fill-#{ $fillName }
+          @apply yoo-border-#{ $fillColor }
+
+      &--outline,
+      &--clear
+        &#{ $root }--fill-#{ $fillName }
+          @each $name in $fillChild
+            #{ $name }
+              @apply yoo-text-#{ $clearTextColor }
+
+              &--error
+                @apply yoo-text-danger
+
+    // SIZE + FORMAT
+    &--rectangular,
+    &--spherical
+      @apply yoo-rounded-xxl
+
+    $sizes: "xxs" 6 14 "xs", "xs" 7 20 "xs", "sm" 8 25 "sm", "md" 12 31 "md", "lg" 14 44 "lg", "xl" 17 63 "xl", "xxl" 22 83 "xxl"
+    $formatChild: ".content__text"
+    $tailwindMultiplier: 4
+    @each $size, $aspectHeight, $aspectWidth, $fontSize in $sizes
+      &--#{ $size }
+        &#{ $root }--rectangular
+          @apply yoo-h-#{ $aspectHeight * $tailwindMultiplier } yoo-w-#{ $aspectWidth * $tailwindMultiplier } yoo-min-h-#{ $aspectHeight * $tailwindMultiplier } yoo-min-w-#{ $aspectWidth * $tailwindMultiplier } yoo-max-h-#{ $aspectHeight * $tailwindMultiplier } yoo-max-w-#{ $aspectWidth * $tailwindMultiplier }
+
+        &#{ $root }--square,
+        &#{ $root }--spherical
+          @apply yoo-h-#{ $aspectHeight * $tailwindMultiplier } yoo-w-#{ $aspectHeight * $tailwindMultiplier } yoo-min-h-#{ $aspectHeight * $tailwindMultiplier } yoo-min-w-#{ $aspectHeight * $tailwindMultiplier } yoo-max-h-#{ $aspectHeight * $tailwindMultiplier } yoo-max-w-#{ $aspectHeight * $tailwindMultiplier }
+
+        @each $name in $formatChild
+          #{ $name }
+            @apply yoo-text-#{ $fontSize }
 
     // ANIMATION
-    &#{ $root }--animation-pulse
+    &--animation-pulse
       @extend %yoo__animation--pulse
+
+    $paddingSizes: "xxs" 0, "xs" 1, "sm" 2, "md" 3, "lg" 4, "xl" 5, "xxl" 6
+    $paddingArea: "px"
+    @each $size, $value in $paddingSizes
+      &--#{ $size }
+        .container
+          &__content
+            +YooSizeByArea($paddingArea, $tailwindMultiplier, $value)
+
+    .container
+      &__content
+        @apply yoo-w-xxl yoo-h-xxl
+
+        .content
+          &__text
+            @apply yoo-font-mont-semibold yoo-font-semibold
+
+          &__icon
+            &--regular
+              @apply yoo-font-awesome-regular
+
+            &--solid
+              @apply yoo-font-awesome-solid
+
+            &--brands
+              @apply yoo-font-awesome-brands
+
+            &--xxs
+              @apply yoo-text-xxs
+
+            &--xs
+              @apply yoo-text-xs
+
+            &--sm
+              @apply yoo-text-sm
+
+            &--md
+              @apply yoo-text-md
+
+            &--lg
+              @apply yoo-text-lg
+
+            &--xl
+              @apply yoo-text-xl
+
+            &--xxl
+              @apply yoo-text-xxl
+
+      &__button
+        @apply yoo-w-xxl yoo-h-xxl yoo-p-0 yoo-z-0 yoo-bg-transparent yoo-border-transparent
+        border-width: 0.1

@@ -1,22 +1,36 @@
 <template lang="pug">
-Button.yoonit-button(
+AbsoluteLayout.yoonit-button__container(
   :class="takeButtonClasses"
-  v-on="takeButtonListeners"
-  v-bind="takeButtonAttributes"
 )
-  FormattedString.yoonit-button__content
-    Span.yoonit-button__icon(
-      v-show="takeIconContent"
+  GridLayout.container__content(
+    :rows="takeGridDistribution.main.rows"
+    :columns="takeGridDistribution.main.columns"
+  )
+    Label.content__icon(
+      v-if="Boolean(takeIconContent)"
+      :row="takeGridDistribution.first.row"
+      :col="takeGridDistribution.first.col"
       :text="takeIconContent"
       :class="takeIconClasses"
-      textAlignment="center"
+      :horizontalAlignment="takeTextAlignment"
+      verticalAlignment="middle"
     )
 
-    Span.yoonit-button__text(
-      v-show="takeTextContent"
+    Label.content__text(
+      v-if="Boolean(takeTextContent)"
+      :row="takeGridDistribution.second.row"
+      :col="takeGridDistribution.second.col"
       :text="takeTextContent"
-      textAlignment="center"
+      :horizontalAlignment="takeTextAlignment"
+      verticalAlignment="middle"
     )
+
+  Button.container__button(
+    v-on="takeButtonListeners"
+    v-bind="takeButtonAttributes"
+    top="0"
+    left="0"
+  )
 </template>
 
 <script>
@@ -69,21 +83,27 @@ export default {
       validator: value =>
         GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.FILL].validator.includes(value)
     },
+    [GLOBAL_ENUMS.ALIGNMENT]: {
+      type: String,
+      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.ALIGNMENT].default,
+      validator: value =>
+        GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.ALIGNMENT].validator.includes(value)
+    },
     [GLOBAL_ENUMS.ICON]: {
       type: String,
       default: ''
-    },
-    [GLOBAL_ENUMS.ICON_POSITION]: {
-      type: String,
-      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.ICON_POSITION].default,
-      validator: value =>
-        GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.ICON_POSITION].validator.includes(value)
     },
     [GLOBAL_ENUMS.ICON_SIZE]: {
       type: String,
       default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.ICON_SIZE].default,
       validator: value =>
         GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.ICON_SIZE].validator.includes(value)
+    },
+    [GLOBAL_ENUMS.ICON_POSITION]: {
+      type: String,
+      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.ICON_POSITION].default,
+      validator: value =>
+        GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.ICON_POSITION].validator.includes(value)
     },
     [GLOBAL_ENUMS.ICON_FAMILY]: {
       type: String,
@@ -99,27 +119,125 @@ export default {
     }
   },
   computed: {
+    takeGridDistribution () {
+      return {
+        main: {
+          rows: [
+            {
+              true: {
+                top: 'auto, *',
+                right: '*',
+                bottom: '*, auto',
+                left: '*'
+              }[this[GLOBAL_ENUMS.ICON_POSITION]],
+              false: '*'
+            }[
+              Boolean(this[GLOBAL_ENUMS.ICON]) &&
+              Boolean(this.takeTextContent)
+            ]
+          ].join(''),
+          columns: [
+            {
+              true: {
+                top: '*',
+                right: '*, auto',
+                bottom: '*',
+                left: 'auto, *'
+              }[this[GLOBAL_ENUMS.ICON_POSITION]],
+              false: '*'
+            }[
+              Boolean(this[GLOBAL_ENUMS.ICON]) &&
+              Boolean(this.takeTextContent)
+            ]
+          ].join('')
+        },
+        first: {
+          row: [
+            {
+              true: {
+                top: '0',
+                right: '0',
+                bottom: '1',
+                left: '0'
+              }[this[GLOBAL_ENUMS.ICON_POSITION]],
+              false: '0'
+            }[
+              Boolean(this[GLOBAL_ENUMS.ICON]) &&
+              Boolean(this.takeTextContent)
+            ]
+          ].join(''),
+          col: [
+            {
+              true: {
+                top: '0',
+                right: '1',
+                bottom: '0',
+                left: '0'
+              }[this[GLOBAL_ENUMS.ICON_POSITION]],
+              false: '0'
+            }[
+              Boolean(this[GLOBAL_ENUMS.ICON]) &&
+              Boolean(this.takeTextContent)
+            ]
+          ].join('')
+        },
+        second: {
+          row: [
+            {
+              true: {
+                top: '1',
+                right: '0',
+                bottom: '0',
+                left: '0'
+              }[this[GLOBAL_ENUMS.ICON_POSITION]],
+              false: '0'
+            }[
+              Boolean(this[GLOBAL_ENUMS.ICON]) &&
+              Boolean(this.takeTextContent)
+            ]
+          ].join(''),
+          col: [
+            {
+              true: {
+                top: '0',
+                right: '0',
+                bottom: '0',
+                left: '1'
+              }[this[GLOBAL_ENUMS.ICON_POSITION]],
+              false: '0'
+            }[
+              Boolean(this[GLOBAL_ENUMS.ICON]) &&
+              Boolean(this.takeTextContent)
+            ]
+          ].join('')
+        }
+      }
+    },
     takeButtonListeners () {
       return this.$listeners
     },
     takeButtonAttributes () {
-      return this.$attrs
+      return {
+        ...this.$attrs,
+        text: ''
+      }
     },
-    takeIconPosition () {
-      return this[GLOBAL_ENUMS.ICON_POSITION]
+    takeTextAlignment () {
+      return this[GLOBAL_ENUMS.ALIGNMENT]
     },
     /**
      * @description Creates the component class with modifiers
      */
     takeButtonClasses () {
       const BLOCK = this.$yooComponentName
+      const ELEMENT = `${BLOCK}__container`
 
       return [
-        `${BLOCK}--${this[GLOBAL_ENUMS.SIZE]}`,
-        `${BLOCK}--${this[GLOBAL_ENUMS.FORMAT]}`,
-        `${BLOCK}--${this[GLOBAL_ENUMS.VARIATION]}`,
-        `${BLOCK}--fill-${this[GLOBAL_ENUMS.FILL]}`,
-        `${BLOCK}--animation-${this[GLOBAL_ENUMS.ANIMATION]}`
+        `${ELEMENT}--${this[GLOBAL_ENUMS.SIZE]}`,
+        `${ELEMENT}--${this[GLOBAL_ENUMS.FORMAT]}`,
+        `${ELEMENT}--${this[GLOBAL_ENUMS.VARIATION]}`,
+        `${ELEMENT}--fill-${this[GLOBAL_ENUMS.FILL]}`,
+        `${ELEMENT}--animation-${this[GLOBAL_ENUMS.ANIMATION]}`
       ]
     },
     /**
@@ -132,22 +250,28 @@ export default {
      * @description Returns the icon class
      */
     takeIconContent () {
+      if (!this[GLOBAL_ENUMS.ICON]) {
+        return null
+      }
+
       return YooFaResolver(this[GLOBAL_ENUMS.ICON])
     },
     /**
      * @description Creates the icon class with modifiers
      */
     takeIconClasses () {
-      const BLOCK = this.$yooComponentName
-      const ELEMENT = `${BLOCK}__icon`
+      if (!this[GLOBAL_ENUMS.ICON]) {
+        return []
+      }
+
+      const ELEMENT = 'content__icon'
 
       return [
         `${ELEMENT}--${this[GLOBAL_ENUMS.ICON_SIZE]}`,
         `${ELEMENT}--${this[GLOBAL_ENUMS.ICON_FAMILY]}`
       ]
     }
-  },
-  methods: {}
+  }
 }
 </script>
 

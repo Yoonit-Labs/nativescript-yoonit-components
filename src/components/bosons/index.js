@@ -16,6 +16,7 @@
 
 import YooComponentName from './YooComponentName'
 import YooIsEnabled from './YooIsEnabled'
+import YooPreventBack from './YooPreventBack'
 import YooDimensions from './YooDimensions'
 import YooCipher from './YooCipher'
 import YooPromise from './YooPromise'
@@ -39,6 +40,7 @@ import {
 export {
   YooComponentName,
   YooIsEnabled,
+  YooPreventBack,
   YooDimensions,
   YooCipher,
   YooPromise,

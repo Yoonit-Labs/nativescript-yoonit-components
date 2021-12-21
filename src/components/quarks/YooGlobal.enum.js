@@ -24,6 +24,7 @@ export const TEXT = 'text'
 export const TEXT_COLOR = 'textColor'
 export const REQUIRED = 'required'
 export const ANIMATION = 'animation'
+export const ALIGNMENT = 'alignment'
 export const EVENT_LOADED = 'loaded'
 export const EVENT_CHANGE = 'change'
 export const EVENT_OUTPUT = 'output'
@@ -34,6 +35,12 @@ export const ID = 'id'
 export const FEEDBACK = 'feedback'
 export const INPUT = 'input'
 export const ITEMS = 'items'
+
+const ALIGNMENTS = [
+  'left',
+  'center',
+  'right'
+]
 
 const ICON_FAMILIES = [
   'regular',
@@ -99,6 +106,10 @@ export const OPTIONS = {
   [SIZE]: {
     default: SIZES[3],
     validator: SIZES
+  },
+  [ALIGNMENT]: {
+    default: ALIGNMENTS[1],
+    validator: ALIGNMENTS
   },
   [FILL]: {
     default: FILLS[0],

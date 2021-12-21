@@ -14,20 +14,27 @@
  * Luigui Delyer @ 2021
  */
 
-import YooSliderPage from './YooSliderPage'
-import YooDockPage from './YooDockPage'
-import YooCountDown from './YooCountDown'
-import YooButton from './YooButton'
-import YooInputText from './YooInputText'
-import YooForm from './YooForm'
-import YooCheck from './YooCheck'
+import {
+  isIOS,
+  AndroidApplication
+} from '@nativescript/core'
 
-export {
-  YooSliderPage,
-  YooDockPage,
-  YooCountDown,
-  YooButton,
-  YooInputText,
-  YooForm,
-  YooCheck
+export default {
+  methods: {
+    $yooPreventBackOn (fn) {
+      if (!isIOS) {
+        AndroidApplication.on(
+          AndroidApplication.activityBackPressedEvent,
+          fn
+        )
+      }
+    },
+    $yooPreventBackOff () {
+      if (!isIOS) {
+        AndroidApplication.off(
+          AndroidApplication.activityBackPressedEvent
+        )
+      }
+    }
+  }
 }
