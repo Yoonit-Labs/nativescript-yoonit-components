@@ -2,10 +2,10 @@ const colors = require('./src/components/quarks/Tokens/Colors')
 const spacingNumbersByScale = require('./src/components/quarks/Tokens/SpacingNumberByScale')
 const spacingBreakpointsByScale = require('./src/components/quarks/Tokens/SpacingBreakpointsByScale')
 const spacingPercentage = require('./src/components/quarks/Tokens/SpacingPercentage')
+const flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette').default
 
 module.exports = {
   prefix: 'yoo-',
-  mode: 'jit',
   purge: [
     './**/**/*.{css,scss,sass,vue,pug,ts}'
   ],
@@ -63,5 +63,22 @@ module.exports = {
   variants: {
     extend: {}
   },
-  plugins: []
+  plugins: [
+    ({ addUtilities, e, theme, variants }) => {
+      const colors = flattenColorPalette(theme('borderColor'))
+      delete colors['default']
+
+      const colorMap = Object.keys(colors)
+        .map(color => ({
+          [`.${e(`border-t-${color}`)}`]: { 'border-top-color': colors[color] },
+          [`.${e(`border-r-${color}`)}`]: { 'border-right-color': colors[color] },
+          [`.${e(`border-b-${color}`)}`]: { 'border-bottom-color': colors[color] },
+          [`.${e(`border-l-${color}`)}`]: { 'border-left-color': colors[color] }
+        }))
+
+      console.log(colorMap)
+
+      addUtilities(colorMap, variants('borderColor'))
+    }
+  ]
 }

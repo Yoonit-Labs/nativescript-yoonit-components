@@ -4,7 +4,7 @@ Page(
   @loaded="onPageLoaded"
 )
   Drawer(
-    ref="drawer"
+    :ref="LOCAL_ENUMS.DRAWER_REF"
     :gestureEnabled="takeGestureEnabled"
     :leftSwipeDistance="takeLeftSwipeDistance"
     @open="onDrawerChange"

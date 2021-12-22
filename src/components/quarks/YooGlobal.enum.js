@@ -124,7 +124,7 @@ export const OPTIONS = {
     validator: POSITIONS
   },
   [ICON_SIZE]: {
-    default: SIZES[4],
+    default: SIZES[3],
     validator: SIZES
   },
   [ICON_FAMILY]: {

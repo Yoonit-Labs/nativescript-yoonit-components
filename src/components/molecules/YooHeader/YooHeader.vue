@@ -8,7 +8,10 @@ GridLayout.yoonit-header(
     row="0"
     col="0"
     flexDirection="row"
+    alignItems="center"
     justifyContent="center"
+    width="100%"
+    height="100%"
   )
     slot(
       :name="LOCAL_ENUMS.SLOT_LEFT"
@@ -19,7 +22,10 @@ GridLayout.yoonit-header(
     row="0"
     col="1"
     flexDirection="row"
+    alignItems="center"
     justifyContent="center"
+    width="100%"
+    height="100%"
   )
     slot(
       :name="LOCAL_ENUMS.SLOT_CENTER"
@@ -32,6 +38,8 @@ GridLayout.yoonit-header(
     flexDirection="row"
     alignItems="center"
     justifyContent="center"
+    width="100%"
+    height="100%"
   )
     slot(
       :name="LOCAL_ENUMS.SLOT_RIGHT"

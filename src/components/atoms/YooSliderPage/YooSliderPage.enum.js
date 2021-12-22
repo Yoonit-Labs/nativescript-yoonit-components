@@ -18,7 +18,7 @@ export const GESTURE_ENABLED = 'gestureEnabled'
 export const LEFT_SWIPE_DISTANCE = 'leftSwipeDistance'
 export const SLOT_MAIN = 'main'
 export const SLOT_LEFT = 'left'
-export const DRAWER_REF = 'drawer'
+export const DRAWER_REF = 'slider'
 
 export const OPTIONS = {
   [LEFT_SWIPE_DISTANCE]: {

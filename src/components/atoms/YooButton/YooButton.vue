@@ -1,35 +1,36 @@
 <template lang="pug">
-AbsoluteLayout.yoonit-button__container(
+GridLayout.yoonit-button__container(
   :class="takeButtonClasses"
+  :rows="takeGridDistribution.main.rows"
+  :columns="takeGridDistribution.main.columns"
 )
-  GridLayout.container__content(
-    :rows="takeGridDistribution.main.rows"
-    :columns="takeGridDistribution.main.columns"
+  Label.container__icon(
+    v-if="Boolean(takeIconContent)"
+    :row="takeGridDistribution.first.row"
+    :col="takeGridDistribution.first.col"
+    :text="takeIconContent"
+    :class="[takeIconClasses, takeIconMargin]"
+    :horizontalAlignment="takeTextAlignment"
+    verticalAlignment="middle"
   )
-    Label.content__icon(
-      v-if="Boolean(takeIconContent)"
-      :row="takeGridDistribution.first.row"
-      :col="takeGridDistribution.first.col"
-      :text="takeIconContent"
-      :class="takeIconClasses"
-      :horizontalAlignment="takeTextAlignment"
-      verticalAlignment="middle"
-    )
 
-    Label.content__text(
-      v-if="Boolean(takeTextContent)"
-      :row="takeGridDistribution.second.row"
-      :col="takeGridDistribution.second.col"
-      :text="takeTextContent"
-      :horizontalAlignment="takeTextAlignment"
-      verticalAlignment="middle"
-    )
+  Label.container__text(
+    v-if="Boolean(takeTextContent)"
+    :row="takeGridDistribution.second.row"
+    :col="takeGridDistribution.second.col"
+    :text="takeTextContent"
+    :class="takeTextMargin"
+    :horizontalAlignment="takeTextAlignment"
+    verticalAlignment="middle"
+  )
 
   Button.container__button(
     v-on="takeButtonListeners"
     v-bind="takeButtonAttributes"
-    top="0"
-    left="0"
+    row="0"
+    rowSpan="2"
+    col="0"
+    colSpan="2"
   )
 </template>
 
@@ -264,12 +265,49 @@ export default {
         return []
       }
 
-      const ELEMENT = 'content__icon'
+      const ELEMENT = 'container__icon'
 
       return [
         `${ELEMENT}--${this[GLOBAL_ENUMS.ICON_SIZE]}`,
         `${ELEMENT}--${this[GLOBAL_ENUMS.ICON_FAMILY]}`
       ]
+    },
+    takeIconMargin () {
+      let classList = {
+        true: {
+          xxs: ['yoo-m-0'],
+          xs: ['yoo-m-0'],
+          sm: ['yoo-mx-4'],
+          md: ['yoo-mx-8'],
+          lg: ['yoo-mx-12'],
+          xl: ['yoo-mx-16'],
+          xxl: ['yoo-mx-20']
+        }[this[GLOBAL_ENUMS.ICON_SIZE]],
+        false: ''
+      }[
+        Boolean(this[GLOBAL_ENUMS.ICON]) &&
+        Boolean(this.takeTextContent)
+      ]
+
+      classList = [
+        ...classList,
+        ...{
+          top: ['yoo-mt-8', 'yoo-mb-4'],
+          right: [],
+          bottom: ['yoo-mb-8', 'yoo-mt-4'],
+          left: []
+        }[this[GLOBAL_ENUMS.ICON_POSITION]]
+      ]
+
+      return classList
+    },
+    takeTextMargin () {
+      return {
+        top: ['yoo-mb-8'],
+        right: [],
+        bottom: ['yoo-mt-8'],
+        left: []
+      }[this[GLOBAL_ENUMS.ICON_POSITION]]
     }
   }
 }

@@ -17,6 +17,7 @@ FlexboxLayout.yoonit-input-text(
     v-on="takeFieldListeners"
     :text="takeFieldValue"
     :class="[takeRootClasses, takeFormatClass]"
+    :textAlignment="takeTextAlignment"
     height="auto"
     @textChange="onFieldTextChange"
   )
@@ -100,6 +101,12 @@ export default {
       default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.FILL].validator[4],
       validator: value =>
         GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.FILL].validator.includes(value)
+    },
+    [GLOBAL_ENUMS.ALIGNMENT]: {
+      type: String,
+      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.ALIGNMENT].validator[0],
+      validator: value =>
+        GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.ALIGNMENT].validator.includes(value)
     }
   },
   data: () => ({
@@ -110,6 +117,9 @@ export default {
     }
   }),
   computed: {
+    takeTextAlignment () {
+      return this[GLOBAL_ENUMS.ALIGNMENT]
+    },
     takeRootClasses () {
       const BLOCK = this.$yooComponentName
 
