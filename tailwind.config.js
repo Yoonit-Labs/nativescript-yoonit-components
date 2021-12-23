@@ -76,8 +76,6 @@ module.exports = {
           [`.${e(`border-l-${color}`)}`]: { 'border-left-color': colors[color] }
         }))
 
-      console.log(colorMap)
-
       addUtilities(colorMap, variants('borderColor'))
     }
   ]
