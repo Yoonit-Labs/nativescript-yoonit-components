@@ -14,12 +14,6 @@
  * Luigui Delyer @ 2021
  */
 
-import YooHeader from './YooHeader'
-import YooCheckGroup from './YooCheckGroup'
-import YooList from './YooList'
+export const LIST_REF = 'list'
 
-export {
-  YooHeader,
-  YooCheckGroup,
-  YooList
-}
+export const OPTIONS = {}

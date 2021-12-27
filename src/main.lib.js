@@ -28,7 +28,11 @@ import {
   YooLoadingPlugin,
   YooDialog,
   YooDialogPlugin,
-  YooFaResolver
+  YooFaResolver,
+  YooPascal,
+  YooSplitWords,
+  YooSplit,
+  YooJoin
 } from './components/bosons'
 
 const $yoo = {
@@ -57,5 +61,9 @@ export {
   YooGQLRequester,
   YooLoading,
   YooDialog,
-  YooFaResolver
+  YooFaResolver,
+  YooPascal,
+  YooSplitWords,
+  YooSplit,
+  YooJoin
 }

@@ -34,7 +34,9 @@ import {
   YooPascal,
   YooCamel,
   YooFaResolver,
-  YooRecursiveSearch
+  YooRecursiveSearch,
+  YooSplit,
+  YooJoin
 } from './YooUtils'
 
 export {
@@ -59,5 +61,7 @@ export {
   YooLowerFirst,
   YooPascal,
   YooCamel,
-  YooFaResolver
+  YooFaResolver,
+  YooSplit,
+  YooJoin
 }

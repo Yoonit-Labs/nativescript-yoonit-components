@@ -14,12 +14,17 @@
  * Luigui Delyer @ 2021
  */
 
-import YooHeader from './YooHeader'
-import YooCheckGroup from './YooCheckGroup'
-import YooList from './YooList'
+@import "../../quarks/YooSize"
 
-export {
-  YooHeader,
-  YooCheckGroup,
-  YooList
-}
+.yoonit
+  &-list
+    &__container
+      $root: &
+      @apply yoo-font-mont-regular yoo-font-normal
+
+      .container
+        &__content
+          $tailwindMultiplier: 4
+          $paddingSizes: "xxs" 0, "xs" 1, "sm" 2, "md" 4, "lg" 5, "xl" 6, "xxl" 7
+          $paddingArea: "p"
+          +YooSize($paddingArea, $tailwindMultiplier, $paddingSizes)

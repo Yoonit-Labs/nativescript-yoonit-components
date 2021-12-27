@@ -30,6 +30,22 @@ const YooUpperFirst = word =>
 const YooLowerFirst = word =>
   YooCaseFirst(word, 'toLowerCase')
 
+const YooJoin = (text, join = ' ') => {
+  if (Array.isArray(text)) {
+    return text.join(join)
+  }
+
+  return text
+}
+
+const YooSplit = (text, split = ' ') => {
+  if (!Array.isArray(text)) {
+    return text.split(split)
+  }
+
+  return text
+}
+
 const YooPascal = text =>
   text
     .map(world =>
@@ -93,5 +109,7 @@ export {
   YooPascal,
   YooCamel,
   YooFaResolver,
-  YooRecursiveSearch
+  YooRecursiveSearch,
+  YooSplit,
+  YooJoin
 }

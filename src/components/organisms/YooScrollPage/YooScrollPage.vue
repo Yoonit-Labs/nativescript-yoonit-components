@@ -32,6 +32,7 @@ Page.yoonit-scroll-page(
       )
 
     ScrollView.container__slot(
+      :ref="LOCAL_ENUMS.SCROLL_REF"
       v-bind="takeAttributes.view"
       :flexGrow="1"
     )

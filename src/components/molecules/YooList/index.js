@@ -14,12 +14,6 @@
  * Luigui Delyer @ 2021
  */
 
-import YooHeader from './YooHeader'
-import YooCheckGroup from './YooCheckGroup'
 import YooList from './YooList'
 
-export {
-  YooHeader,
-  YooCheckGroup,
-  YooList
-}
+export default YooList

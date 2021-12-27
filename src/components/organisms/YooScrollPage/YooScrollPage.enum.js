@@ -16,5 +16,6 @@
 
 export const HEADER = 'header'
 export const SLOT_CONTENT = 'content'
+export const SCROLL_REF = 'scroll'
 
 export const OPTIONS = {}

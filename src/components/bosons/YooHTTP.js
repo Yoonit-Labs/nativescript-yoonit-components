@@ -45,7 +45,10 @@ const YooHTTP = async ({
   }
 
   const [
-    success,
+    {
+      content,
+      statusCode: http
+    },
     error
   ] = await YooPromise(
     Http
@@ -58,7 +61,12 @@ const YooHTTP = async ({
     throw error
   }
 
-  return success
+  const data = JSON.parse(content)
+
+  return {
+    ...data,
+    http
+  }
 }
 
 export default YooHTTP
