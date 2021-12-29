@@ -2,6 +2,7 @@
 ListView.yoonit-list__container(
   :ref="LOCAL_ENUMS.LIST_REF"
   for="item in $props[GLOBAL_ENUMS.INPUT]"
+  separatorColor="transparent"
   @itemTap="$emit(GLOBAL_ENUMS.EVENT_OUTPUT, $event)"
   @layoutChanged="onRootChanged"
 )
@@ -51,13 +52,13 @@ export default {
     },
     [GLOBAL_ENUMS.VARIATION]: {
       type: String,
-      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.VARIATION].default,
+      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.VARIATION].validator[1],
       validator: value =>
         GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.VARIATION].validator.includes(value)
     },
     [GLOBAL_ENUMS.FILL]: {
       type: String,
-      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.FILL].default,
+      default: GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.FILL].validator[3],
       validator: value =>
         GLOBAL_ENUMS.OPTIONS[GLOBAL_ENUMS.FILL].validator.includes(value)
     },

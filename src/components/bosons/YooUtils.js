@@ -14,6 +14,11 @@
  * Luigui Delyer @ 2021
  */
 
+import {
+  Application,
+  Utils
+} from '@nativescript/core'
+
 const YooSplitWords = text =>
   text
     .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
@@ -75,6 +80,14 @@ const YooUpper = text =>
 const YooFaResolver = code =>
   String.fromCharCode(parseInt(code, 16))
 
+const YooHideKeyboard = () => {
+  if (Application.ios) {
+    Application.ios.nativeApp.sendActionToFromForEvent('resignFirstResponder', null, null, null)
+  } else {
+    Utils.ad.dismissSoftInput()
+  }
+}
+
 const YooRecursiveSearch = ({
   input = {},
   key = ''
@@ -111,5 +124,6 @@ export {
   YooFaResolver,
   YooRecursiveSearch,
   YooSplit,
-  YooJoin
+  YooJoin,
+  YooHideKeyboard
 }

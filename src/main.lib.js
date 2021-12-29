@@ -32,7 +32,8 @@ import {
   YooPascal,
   YooSplitWords,
   YooSplit,
-  YooJoin
+  YooJoin,
+  YooHideKeyboard
 } from './components/bosons'
 
 const $yoo = {
@@ -65,5 +66,6 @@ export {
   YooPascal,
   YooSplitWords,
   YooSplit,
-  YooJoin
+  YooJoin,
+  YooHideKeyboard
 }

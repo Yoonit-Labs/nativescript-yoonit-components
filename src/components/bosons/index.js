@@ -36,7 +36,8 @@ import {
   YooFaResolver,
   YooRecursiveSearch,
   YooSplit,
-  YooJoin
+  YooJoin,
+  YooHideKeyboard
 } from './YooUtils'
 
 export {
@@ -63,5 +64,6 @@ export {
   YooCamel,
   YooFaResolver,
   YooSplit,
-  YooJoin
+  YooJoin,
+  YooHideKeyboard
 }

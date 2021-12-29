@@ -46,10 +46,7 @@ const YooGQLRequester = async ({
     : { query }
 
   const [
-    {
-      content,
-      statusCode: http
-    },
+    data,
     error
   ] = await YooPromise(
     YooHTTP({
@@ -62,8 +59,6 @@ const YooGQLRequester = async ({
   if (error !== undefined) {
     throw error
   }
-
-  const data = JSON.parse(content)
 
   const fakeStatus = YooRecursiveSearch({
     input: data,
@@ -80,10 +75,7 @@ const YooGQLRequester = async ({
     throw new Error(fakeMessage)
   }
 
-  return {
-    ...data,
-    http
-  }
+  return data
 }
 
 export default YooGQLRequester
