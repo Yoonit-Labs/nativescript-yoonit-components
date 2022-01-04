@@ -19,6 +19,7 @@ import {
   YooComponentName,
   YooIsEnabled,
   YooPreventBack,
+  YooStatusBarColor,
   YooDimensions,
   YooCipher,
   YooPromise,
@@ -41,6 +42,7 @@ const $yoo = {
     Vue.mixin(YooComponentName)
     Vue.mixin(YooIsEnabled)
     Vue.mixin(YooPreventBack)
+    Vue.mixin(YooStatusBarColor)
     Vue.use(YooDimensions)
     Vue.use(YooLoadingPlugin)
     Vue.use(YooDialogPlugin)

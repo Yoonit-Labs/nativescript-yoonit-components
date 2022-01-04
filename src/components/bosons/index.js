@@ -17,6 +17,7 @@
 import YooComponentName from './YooComponentName'
 import YooIsEnabled from './YooIsEnabled'
 import YooPreventBack from './YooPreventBack'
+import YooStatusBarColor from './YooStatusBarColor'
 import YooDimensions from './YooDimensions'
 import YooCipher from './YooCipher'
 import YooPromise from './YooPromise'
@@ -65,5 +66,6 @@ export {
   YooFaResolver,
   YooSplit,
   YooJoin,
-  YooHideKeyboard
+  YooHideKeyboard,
+  YooStatusBarColor
 }
