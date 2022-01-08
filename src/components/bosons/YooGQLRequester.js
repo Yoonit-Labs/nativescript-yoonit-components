@@ -46,35 +46,64 @@ const YooGQLRequester = async ({
     : { query }
 
   const [
-    data,
+    success,
     error
   ] = await YooPromise(
     YooHTTP({
       url,
       headers,
       payload: queryByOS
-    })
+    }),
+    'gql-service'
   )
 
   if (error !== undefined) {
+    console.log('[YOO_GQL][ERROR_EXCEPTION]:\n', error, '\n[QUERY]:', query)
+
     throw error
   }
 
   const fakeStatus = YooRecursiveSearch({
-    input: data,
+    input: success,
     key: 'status'
   })
 
   if (fakeStatus < 200 ||
       fakeStatus > 299) {
     const fakeMessage = YooRecursiveSearch({
-      input: data,
+      input: success,
       key: 'message'
     })
+
+    console.log('[YOO_GQL][ERROR_FAKE_STATUS]:\n', fakeStatus, fakeMessage, '\n[QUERY]:', query)
+
+    if (fakeMessage.constructor !== String) {
+      throw new Error()
+    }
 
     throw new Error(fakeMessage)
   }
 
+  const fakeSuccess = YooRecursiveSearch({
+    input: success,
+    key: 'errors'
+  })
+
+  if (fakeSuccess) {
+    console.log('[YOO_GQL][ERROR_FAKE_SUCCESS]:\n', fakeSuccess, '\n[QUERY]:', query)
+
+    if (fakeSuccess.constructor !== String) {
+      throw new Error()
+    }
+
+    throw new Error(fakeSuccess)
+  }
+
+  const {
+    data
+  } = success
+
+  // console.log('[YOO_GQL][SUCCESS]', data)
   return data
 }
 

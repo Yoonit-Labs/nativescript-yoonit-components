@@ -20,6 +20,7 @@ import YooPreventBack from './YooPreventBack'
 import YooStatusBarColor from './YooStatusBarColor'
 import YooDimensions from './YooDimensions'
 import YooCipher from './YooCipher'
+import YooStorage from './YooStorage'
 import YooPromise from './YooPromise'
 import YooHTTP from './YooHTTP'
 import YooGQLRequester from './YooGQLRequester'
@@ -47,6 +48,7 @@ export {
   YooPreventBack,
   YooDimensions,
   YooCipher,
+  YooStorage,
   YooPromise,
   YooHTTP,
   YooGQLRequester,

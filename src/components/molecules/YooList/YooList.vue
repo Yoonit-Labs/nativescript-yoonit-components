@@ -6,15 +6,16 @@ ListView.yoonit-list__container(
   @itemTap="$emit(GLOBAL_ENUMS.EVENT_OUTPUT, $event)"
   @layoutChanged="onRootChanged"
 )
-  v-template
-    FlexboxLayout.container__content(
-      :class="takeContentClasses"
-      flexDirection="row"
-      justifyContent="space-between"
-    )
-      Label.content__label(
-        :text="item.label"
+  slot
+    v-template
+      FlexboxLayout.container__content(
+        :class="takeContentClasses"
+        flexDirection="row"
+        justifyContent="space-between"
       )
+        Label.content__label(
+          :text="item.label"
+        )
 </template>
 
 <script>
@@ -36,7 +37,6 @@ ListView.yoonit-list__container(
 
 import { GLOBAL_ENUMS } from '../../quarks'
 import * as LOCAL_ENUMS from './YooList.enum'
-import util from 'util'
 
 export default {
   name: 'YooList',

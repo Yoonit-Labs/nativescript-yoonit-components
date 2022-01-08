@@ -22,6 +22,7 @@ import {
   YooStatusBarColor,
   YooDimensions,
   YooCipher,
+  YooStorage,
   YooPromise,
   YooHTTP,
   YooGQLRequester,
@@ -59,6 +60,7 @@ export default $yoo
 
 export {
   YooCipher,
+  YooStorage,
   YooPromise,
   YooHTTP,
   YooGQLRequester,

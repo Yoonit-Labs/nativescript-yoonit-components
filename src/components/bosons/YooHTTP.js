@@ -54,17 +54,17 @@ const YooHTTP = async ({
     Http
       .request(
         request
-      )
+      ),
+    'http'
   )
 
   if (error !== undefined) {
+    console.log('[YOO_HTTP] Error', error)
     throw error
   }
 
-  const data = JSON.parse(content)
-
   return {
-    ...data,
+    ...JSON.parse(content),
     http
   }
 }

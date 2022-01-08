@@ -21,33 +21,36 @@ import * as aesjs from 'aes-js'
 // https://www.npmjs.com/package/aes-js
 
 const YooCipher = {
-  encrypt: (text, key = null) => {
-    if (!key) {
-      return
+  encrypt: ({ value = '', cryptoKey = null }) => {
+    if (!value || !cryptoKey) {
+      return null
     }
 
-    if (text.constructor !== String) {
-      text = JSON.stringify(text)
+    if (value.constructor !== String) {
+      value = JSON.stringify(value)
     }
 
-    const textBytes = aesjs.utils.utf8.toBytes(text)
+    const textBytes = aesjs.utils.utf8.toBytes(value)
 
     // eslint-disable-next-line
-    const aesCtr = new aesjs.ModeOfOperation.ctr(key)
+    const aesCtr = new aesjs.ModeOfOperation.ctr(cryptoKey)
     const encryptedBytes = aesCtr.encrypt(textBytes)
 
     return aesjs.utils.hex.fromBytes(encryptedBytes)
   },
-  decrypt: (text, key = null) => {
-    if (!key) {
-      return
+  decrypt: ({ value = '', cryptoKey = null }) => {
+    if (!value || !cryptoKey) {
+      return {
+        status: false,
+        data: null
+      }
     }
 
     try {
-      const encryptedBytes = aesjs.utils.hex.toBytes(text)
+      const encryptedBytes = aesjs.utils.hex.toBytes(value)
 
       // eslint-disable-next-line
-      const aesCtr = new aesjs.ModeOfOperation.ctr(key)
+      const aesCtr = new aesjs.ModeOfOperation.ctr(cryptoKey)
       const decryptedBytes = aesCtr.decrypt(encryptedBytes)
 
       return {
