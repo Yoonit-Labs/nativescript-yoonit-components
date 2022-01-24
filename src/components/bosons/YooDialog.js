@@ -17,20 +17,23 @@
 import { Dialogs } from '@nativescript/core'
 
 const YooDialog = {
-  alert: ({
-    title = '',
-    message = '',
-    okButtonText = 'OK',
-    cancelable = true
-  }) => {
-    return Dialogs
+  alert: options =>
+    Dialogs
       .alert({
-        title,
-        message,
-        okButtonText,
-        cancelable
+        okButtonText: 'OK',
+        cancelable: true,
+        ...options
+      }),
+
+  confirm: options =>
+    Dialogs
+      .confirm({
+        okButtonText: 'YES',
+        cancelButtonText: 'NO',
+        neutralButtonText: 'CANCEL',
+        cancelable: true,
+        ...options
       })
-  }
 }
 
 export default {

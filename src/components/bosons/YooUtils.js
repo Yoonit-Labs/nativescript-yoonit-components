@@ -23,8 +23,13 @@ const YooSplitWords = text =>
   text
     .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
 
-const YooCaseFirst = (word, caseFn) =>
-  `${word[0][caseFn]()}${word.slice(1)}`
+const YooCaseFirst = (word, caseFn) => {
+  if (!word) {
+    return ''
+  }
+
+  return `${word[0][caseFn]()}${word.slice(1)}`
+}
 
 const YooCase = (word, caseFn) =>
   word[caseFn]()

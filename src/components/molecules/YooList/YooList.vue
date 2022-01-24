@@ -1,9 +1,11 @@
 <template lang="pug">
 ListView.yoonit-list__container(
   :ref="LOCAL_ENUMS.LIST_REF"
+  v-on="takeListListeners"
+  v-bind="takeListAttributes"
   for="item in $props[GLOBAL_ENUMS.INPUT]"
   separatorColor="transparent"
-  @itemTap="$emit(GLOBAL_ENUMS.EVENT_OUTPUT, $event)"
+  @itemTap="onListItemTap"
   @layoutChanged="onRootChanged"
 )
   slot
@@ -72,6 +74,12 @@ export default {
     GLOBAL_ENUMS
   }),
   computed: {
+    takeListListeners () {
+      return this.$listeners
+    },
+    takeListAttributes () {
+      return this.$attrs
+    },
     takeContentClasses () {
       const BLOCK = 'container__content'
 
@@ -83,6 +91,12 @@ export default {
     }
   },
   methods: {
+    onListItemTap ($event) {
+      return this.$emit(
+        GLOBAL_ENUMS.EVENT_OUTPUT,
+        $event
+      )
+    },
     onRootChanged () {
       const {
         viewSize: {
