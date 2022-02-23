@@ -17,9 +17,11 @@
 import YooHeader from './YooHeader'
 import YooCheckGroup from './YooCheckGroup'
 import YooList from './YooList'
+import YooInputText from './YooInputText'
 
 export {
   YooHeader,
   YooCheckGroup,
-  YooList
+  YooList,
+  YooInputText
 }

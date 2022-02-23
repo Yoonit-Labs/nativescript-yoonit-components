@@ -47,7 +47,7 @@ FlexboxLayout.yoonit-input-text(
  * Luigui Delyer @ 2021
  */
 import * as LOCAL_ENUMS from './YooInputText.enum'
-import { GLOBAL_ENUMS } from '../../quarks'
+import { GLOBAL_ENUMS } from '@quarks'
 
 export default {
   name: 'YooInputText',
@@ -59,7 +59,7 @@ export default {
       default: ''
     },
     [GLOBAL_ENUMS.INPUT]: {
-      type: String,
+      type: [String, Number],
       required: false,
       default: ''
     },
@@ -225,6 +225,7 @@ export default {
       }
     },
     onFieldTextChange ($event) {
+      $event.value = `${$event.value}`
       return this.doValidateField($event.value.trim())
     },
     onLabelTap () {
@@ -236,7 +237,7 @@ export default {
       if (newValue === oldValue) {
         return
       }
-
+      newValue = `${newValue}`
       return this.doValidateField(newValue.trim())
     }
   }
